@@ -34,7 +34,7 @@ mp_holistic = mp.solutions.holistic # Holistic model
 mp_drawing = mp.solutions.drawing_utils # Drawing utilities 
 class train():
         score = 0
-        while 1.0 >= score:
+        while 0.9 >= score:
             def mediapipe_detection(image, model):
                 image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB) # COLOR CONVERSION BGR 2 RGB
                 image.flags.writeable = False                  # Image is no longer writeable
@@ -88,7 +88,9 @@ class train():
             #actions = np.array(['1000000'])
 
             # adjust ก 
-            general  = ['testfinal']
+            general  = ['nothing','age','Do-you-understand','eat','fine','go','have','how-much',
+            'hungry','me','mhai','miss','name','nevermind','no','now','or','question',
+            'rice','school','sorry','thank-you','time','toothache','what','worry','yang','you']
 
             actions = np.array(general)
             # Thirty videos worth of data
@@ -130,14 +132,14 @@ class train():
             history = model.fit(X_train, y_train, epochs=300, validation_data=(X_test,y_test))
             model.summary()
             res = model.predict(X_test)
-            model.save('general.h5')
+            model.save('sen.h5')
             yhat = model.predict(X_test)
             ytrue = np.argmax(y_test, axis=1).tolist()
             yhat = np.argmax(yhat, axis=1).tolist()
             multilabel_confusion_matrix(ytrue, yhat)
             score = accuracy_score(ytrue, yhat)
             print("accuracy",score)
-            if score < 1.0 :
+            if score < 0.9 :
                     print("FAIL")
             else :
                     print("SUCCESS")

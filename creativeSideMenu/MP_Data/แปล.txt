@@ -1,0 +1,27 @@
+age อายุ
+Do-you-understand เข้าใจไหม
+eat กิน
+fine สบายดี
+go ไป
+have มี
+how-much เท่าไหร่
+hungry หิว
+me ฉัน
+mhai ไหม
+miss คิดถึง
+name ชื่อ 
+nevermine ไม่เป็นไร
+no ไม่
+now ตอนนี้ นี้
+or หรือ 
+question คำถาม
+rice ข้าว
+school โรงเรียน
+sorry ขอโทษ
+thank-you ขอบคุณ
+time เวลา กี่โมง
+toothache ปวดฟัน
+what อะไร
+worry ไม่สบายใจ
+yang ยัง
+you คุณ
