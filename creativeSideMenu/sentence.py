@@ -161,10 +161,10 @@ def testcamera():
 				elif count_same_frame > 50:
 					if len(predicted) == 1:
 						Thread(args=(predicted, )).start()
-					tts = gTTS(predicted, lang='th')
-					tts.save('speech.mp3')
+					#tts = gTTS(predicted, lang='th')
+					#tts.save('speech.mp3')
 					text = predicted + ' ' + text
-					playsound('./speech.mp3')						
+					#playsound('./speech.mp3')						
 					print(text)
 					count_same_frame = 0
 				

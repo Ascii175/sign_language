@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'untitledpTYbdN.ui'
+## Form generated from reading UI file 'untitledfNPptv.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -13,12 +13,13 @@ from PySide2.QtGui import *
 from PySide2.QtWidgets import *
 
 import icons_rc
+import icons_rc
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(895, 628)
+        MainWindow.resize(895, 634)
         MainWindow.setStyleSheet(u"")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
@@ -115,7 +116,7 @@ class Ui_MainWindow(object):
 "")
         self.menu1 = QWidget()
         self.menu1.setObjectName(u"menu1")
-        self.menu1.setGeometry(QRect(0, 0, 230, 244))
+        self.menu1.setGeometry(QRect(0, 0, 230, 250))
         self.menu1.setStyleSheet(u"border:none;\n"
 "")
         self.verticalLayout_5 = QVBoxLayout(self.menu1)
@@ -128,45 +129,45 @@ class Ui_MainWindow(object):
         self.frame_11.setFrameShadow(QFrame.Raised)
         self.verticalLayout_6 = QVBoxLayout(self.frame_11)
         self.verticalLayout_6.setObjectName(u"verticalLayout_6")
-        self.pushButton_3 = QPushButton(self.frame_11)
-        self.pushButton_3.setObjectName(u"pushButton_3")
-        self.pushButton_3.setMaximumSize(QSize(999999, 2000))
-        self.pushButton_3.setSizeIncrement(QSize(50, 50))
-        self.pushButton_3.setBaseSize(QSize(200, 200))
+        self.time = QPushButton(self.frame_11)
+        self.time.setObjectName(u"time")
+        self.time.setMaximumSize(QSize(999999, 2000))
+        self.time.setSizeIncrement(QSize(50, 50))
+        self.time.setBaseSize(QSize(200, 200))
         font1 = QFont()
         font1.setFamily(u"TH Mali Grade 6")
         font1.setPointSize(16)
         font1.setBold(True)
         font1.setWeight(75)
-        self.pushButton_3.setFont(font1)
-        self.pushButton_3.setStyleSheet(u"")
+        self.time.setFont(font1)
+        self.time.setStyleSheet(u"")
         icon = QIcon()
         icon.addFile(u":/icons/icons/camera.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.pushButton_3.setIcon(icon)
-        self.pushButton_3.setIconSize(QSize(32, 32))
+        self.time.setIcon(icon)
+        self.time.setIconSize(QSize(32, 32))
 
-        self.verticalLayout_6.addWidget(self.pushButton_3, 0, Qt.AlignBottom)
+        self.verticalLayout_6.addWidget(self.time, 0, Qt.AlignBottom)
 
-        self.pushButton_5 = QPushButton(self.frame_11)
-        self.pushButton_5.setObjectName(u"pushButton_5")
-        self.pushButton_5.setFont(font1)
-        self.pushButton_5.setStyleSheet(u"")
-        self.pushButton_5.setIcon(icon)
-        self.pushButton_5.setIconSize(QSize(32, 32))
+        self.general = QPushButton(self.frame_11)
+        self.general.setObjectName(u"general")
+        self.general.setFont(font1)
+        self.general.setStyleSheet(u"")
+        self.general.setIcon(icon)
+        self.general.setIconSize(QSize(32, 32))
 
-        self.verticalLayout_6.addWidget(self.pushButton_5, 0, Qt.AlignBottom)
+        self.verticalLayout_6.addWidget(self.general, 0, Qt.AlignBottom)
 
-        self.pushButton_4 = QPushButton(self.frame_11)
-        self.pushButton_4.setObjectName(u"pushButton_4")
-        self.pushButton_4.setFont(font1)
-        self.pushButton_4.setStyleSheet(u"")
-        self.pushButton_4.setIcon(icon)
-        self.pushButton_4.setIconSize(QSize(32, 32))
+        self.day = QPushButton(self.frame_11)
+        self.day.setObjectName(u"day")
+        self.day.setFont(font1)
+        self.day.setStyleSheet(u"")
+        self.day.setIcon(icon)
+        self.day.setIconSize(QSize(32, 32))
 
-        self.verticalLayout_6.addWidget(self.pushButton_4, 0, Qt.AlignBottom)
+        self.verticalLayout_6.addWidget(self.day, 0, Qt.AlignBottom)
 
-        self.pushButton_2 = QPushButton(self.frame_11)
-        self.pushButton_2.setObjectName(u"pushButton_2")
+        self.num = QPushButton(self.frame_11)
+        self.num.setObjectName(u"num")
         font2 = QFont()
         font2.setFamily(u"TH Mali Grade 6")
         font2.setPointSize(16)
@@ -175,12 +176,12 @@ class Ui_MainWindow(object):
         font2.setUnderline(False)
         font2.setWeight(75)
         font2.setStrikeOut(False)
-        self.pushButton_2.setFont(font2)
-        self.pushButton_2.setStyleSheet(u"")
-        self.pushButton_2.setIcon(icon)
-        self.pushButton_2.setIconSize(QSize(32, 32))
+        self.num.setFont(font2)
+        self.num.setStyleSheet(u"")
+        self.num.setIcon(icon)
+        self.num.setIconSize(QSize(32, 32))
 
-        self.verticalLayout_6.addWidget(self.pushButton_2, 0, Qt.AlignBottom)
+        self.verticalLayout_6.addWidget(self.num, 0, Qt.AlignBottom)
 
 
         self.verticalLayout_5.addWidget(self.frame_11)
@@ -190,7 +191,7 @@ class Ui_MainWindow(object):
         self.toolBox.addItem(self.menu1, icon1, u"\u0e2b\u0e21\u0e27\u0e14\u0e04\u0e33")
         self.menu2 = QWidget()
         self.menu2.setObjectName(u"menu2")
-        self.menu2.setGeometry(QRect(0, 0, 230, 244))
+        self.menu2.setGeometry(QRect(0, 0, 230, 250))
         self.verticalLayout_7 = QVBoxLayout(self.menu2)
         self.verticalLayout_7.setSpacing(0)
         self.verticalLayout_7.setObjectName(u"verticalLayout_7")
@@ -240,28 +241,28 @@ class Ui_MainWindow(object):
         self.verticalLayout_8 = QVBoxLayout(self.frame_12)
         self.verticalLayout_8.setObjectName(u"verticalLayout_8")
         self.verticalLayout_8.setContentsMargins(9, 9, -1, -1)
-        self.pushButton_6 = QPushButton(self.frame_12)
-        self.pushButton_6.setObjectName(u"pushButton_6")
-        self.pushButton_6.setFont(font1)
+        self.refuse = QPushButton(self.frame_12)
+        self.refuse.setObjectName(u"refuse")
+        self.refuse.setFont(font1)
         icon2 = QIcon()
         icon2.addFile(u":/icons/icons/github.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.pushButton_6.setIcon(icon2)
-        self.pushButton_6.setIconSize(QSize(32, 32))
+        self.refuse.setIcon(icon2)
+        self.refuse.setIconSize(QSize(32, 32))
 
-        self.verticalLayout_8.addWidget(self.pushButton_6, 0, Qt.AlignLeft)
+        self.verticalLayout_8.addWidget(self.refuse, 0, Qt.AlignLeft)
 
-        self.pushButton_7 = QPushButton(self.frame_12)
-        self.pushButton_7.setObjectName(u"pushButton_7")
-        self.pushButton_7.setFont(font1)
+        self.question = QPushButton(self.frame_12)
+        self.question.setObjectName(u"question")
+        self.question.setFont(font1)
         icon3 = QIcon()
         icon3.addFile(u":/icons/icons/thumbs-up.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.pushButton_7.setIcon(icon3)
-        self.pushButton_7.setIconSize(QSize(32, 32))
+        self.question.setIcon(icon3)
+        self.question.setIconSize(QSize(32, 32))
 
-        self.verticalLayout_8.addWidget(self.pushButton_7, 0, Qt.AlignLeft)
+        self.verticalLayout_8.addWidget(self.question, 0, Qt.AlignLeft)
 
-        self.pushButton_8 = QPushButton(self.frame_12)
-        self.pushButton_8.setObjectName(u"pushButton_8")
+        self.sentence = QPushButton(self.frame_12)
+        self.sentence.setObjectName(u"sentence")
         palette1 = QPalette()
         palette1.setBrush(QPalette.Active, QPalette.WindowText, brush)
         palette1.setBrush(QPalette.Active, QPalette.Button, brush1)
@@ -296,14 +297,14 @@ class Ui_MainWindow(object):
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
         palette1.setBrush(QPalette.Disabled, QPalette.PlaceholderText, brush5)
 #endif
-        self.pushButton_8.setPalette(palette1)
-        self.pushButton_8.setFont(font1)
+        self.sentence.setPalette(palette1)
+        self.sentence.setFont(font1)
         icon4 = QIcon()
         icon4.addFile(u":/icons/icons/user-check.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.pushButton_8.setIcon(icon4)
-        self.pushButton_8.setIconSize(QSize(32, 32))
+        self.sentence.setIcon(icon4)
+        self.sentence.setIconSize(QSize(32, 32))
 
-        self.verticalLayout_8.addWidget(self.pushButton_8, 0, Qt.AlignLeft)
+        self.verticalLayout_8.addWidget(self.sentence, 0, Qt.AlignLeft)
 
 
         self.verticalLayout_7.addWidget(self.frame_12)
@@ -312,39 +313,39 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_4.addWidget(self.toolBox)
 
-        self.pushButton_17 = QPushButton(self.frame_9)
-        self.pushButton_17.setObjectName(u"pushButton_17")
-        self.pushButton_17.setFont(font)
-        self.pushButton_17.setStyleSheet(u"background-color: rgb(0, 0, 0);")
+        self.showpic = QPushButton(self.frame_9)
+        self.showpic.setObjectName(u"showpic")
+        self.showpic.setFont(font)
+        self.showpic.setStyleSheet(u"background-color: rgb(0, 0, 0);")
         icon5 = QIcon()
         icon5.addFile(u":/icons/icons/book.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.pushButton_17.setIcon(icon5)
-        self.pushButton_17.setIconSize(QSize(32, 32))
+        self.showpic.setIcon(icon5)
+        self.showpic.setIconSize(QSize(32, 32))
 
-        self.verticalLayout_4.addWidget(self.pushButton_17)
+        self.verticalLayout_4.addWidget(self.showpic)
 
-        self.pushButton_9 = QPushButton(self.frame_9)
-        self.pushButton_9.setObjectName(u"pushButton_9")
-        self.pushButton_9.setFont(font)
-        self.pushButton_9.setStyleSheet(u"background-color: rgb(0, 0, 0);\n"
+        self.upload = QPushButton(self.frame_9)
+        self.upload.setObjectName(u"upload")
+        self.upload.setFont(font)
+        self.upload.setStyleSheet(u"background-color: rgb(0, 0, 0);\n"
 "")
         icon6 = QIcon()
         icon6.addFile(u":/icons/icons/upload.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.pushButton_9.setIcon(icon6)
-        self.pushButton_9.setIconSize(QSize(32, 32))
+        self.upload.setIcon(icon6)
+        self.upload.setIconSize(QSize(32, 32))
 
-        self.verticalLayout_4.addWidget(self.pushButton_9, 0, Qt.AlignBottom)
+        self.verticalLayout_4.addWidget(self.upload, 0, Qt.AlignBottom)
 
-        self.pushButton_10 = QPushButton(self.frame_9)
-        self.pushButton_10.setObjectName(u"pushButton_10")
-        self.pushButton_10.setFont(font)
-        self.pushButton_10.setStyleSheet(u"background-color: rgb(0, 0, 0);")
+        self.train2 = QPushButton(self.frame_9)
+        self.train2.setObjectName(u"train2")
+        self.train2.setFont(font)
+        self.train2.setStyleSheet(u"background-color: rgb(0, 0, 0);")
         icon7 = QIcon()
         icon7.addFile(u":/icons/icons/activity.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.pushButton_10.setIcon(icon7)
-        self.pushButton_10.setIconSize(QSize(32, 32))
+        self.train2.setIcon(icon7)
+        self.train2.setIconSize(QSize(32, 32))
 
-        self.verticalLayout_4.addWidget(self.pushButton_10)
+        self.verticalLayout_4.addWidget(self.train2)
 
 
         self.verticalLayout_3.addWidget(self.frame_9)
@@ -520,31 +521,31 @@ class Ui_MainWindow(object):
         self.frame_7.setFrameShadow(QFrame.Raised)
         self.horizontalLayout_8 = QHBoxLayout(self.frame_7)
         self.horizontalLayout_8.setObjectName(u"horizontalLayout_8")
-        self.pushButton_14 = QPushButton(self.frame_7)
-        self.pushButton_14.setObjectName(u"pushButton_14")
-        self.pushButton_14.setStyleSheet(u"border:3px solid rgb(230, 5, 64);\n"
+        self.mic = QPushButton(self.frame_7)
+        self.mic.setObjectName(u"mic")
+        self.mic.setStyleSheet(u"border:3px solid rgb(230, 5, 64);\n"
 "border-radius:20px\n"
 "")
-        self.pushButton_14.setText(u"")
+        self.mic.setText(u"")
         icon12 = QIcon()
         icon12.addFile(u":/icons/icons/mic.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.pushButton_14.setIcon(icon12)
-        self.pushButton_14.setIconSize(QSize(32, 32))
+        self.mic.setIcon(icon12)
+        self.mic.setIconSize(QSize(32, 32))
 
-        self.horizontalLayout_8.addWidget(self.pushButton_14)
+        self.horizontalLayout_8.addWidget(self.mic)
 
-        self.lineEdit = QLineEdit(self.frame_7)
-        self.lineEdit.setObjectName(u"lineEdit")
-        self.lineEdit.setMaximumSize(QSize(600, 70))
+        self.putText = QLineEdit(self.frame_7)
+        self.putText.setObjectName(u"putText")
+        self.putText.setMaximumSize(QSize(600, 70))
         font4 = QFont()
         font4.setPointSize(22)
-        self.lineEdit.setFont(font4)
-        self.lineEdit.setStyleSheet(u"lineEdit,QLineEdit{\n"
+        self.putText.setFont(font4)
+        self.putText.setStyleSheet(u"lineEdit,QLineEdit{\n"
 "	background-color: rgb(0, 0, 0);\n"
 "	border-bottom:3px solid rgb(230,5,64);\n"
 "}")
 
-        self.horizontalLayout_8.addWidget(self.lineEdit)
+        self.horizontalLayout_8.addWidget(self.putText)
 
 
         self.horizontalLayout_3.addWidget(self.frame_7)
@@ -559,7 +560,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.toolBox.setCurrentIndex(0)
+        self.toolBox.setCurrentIndex(1)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -569,18 +570,18 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"SignLanguageTranslation", None))
         self.label_2.setText("")
-        self.pushButton_3.setText(QCoreApplication.translate("MainWindow", u"\u0e2b\u0e21\u0e27\u0e14\u0e40\u0e27\u0e25\u0e32", None))
-        self.pushButton_5.setText(QCoreApplication.translate("MainWindow", u"\u0e2b\u0e21\u0e27\u0e14\u0e04\u0e33\u0e17\u0e31\u0e48\u0e27\u0e44\u0e1b", None))
-        self.pushButton_4.setText(QCoreApplication.translate("MainWindow", u"\u0e2b\u0e21\u0e27\u0e14\u0e27\u0e31\u0e19\u0e40\u0e14\u0e37\u0e2d\u0e19\u0e1b\u0e35", None))
-        self.pushButton_2.setText(QCoreApplication.translate("MainWindow", u"\u0e2b\u0e21\u0e27\u0e14\u0e15\u0e31\u0e27\u0e40\u0e25\u0e02\u0e08\u0e33\u0e19\u0e27\u0e19\u0e19\u0e31\u0e1a", None))
+        self.time.setText(QCoreApplication.translate("MainWindow", u"\u0e2b\u0e21\u0e27\u0e14\u0e40\u0e27\u0e25\u0e32", None))
+        self.general.setText(QCoreApplication.translate("MainWindow", u"\u0e2b\u0e21\u0e27\u0e14\u0e04\u0e33\u0e17\u0e31\u0e48\u0e27\u0e44\u0e1b", None))
+        self.day.setText(QCoreApplication.translate("MainWindow", u"\u0e2b\u0e21\u0e27\u0e14\u0e27\u0e31\u0e19\u0e40\u0e14\u0e37\u0e2d\u0e19\u0e1b\u0e35", None))
+        self.num.setText(QCoreApplication.translate("MainWindow", u"\u0e2b\u0e21\u0e27\u0e14\u0e15\u0e31\u0e27\u0e40\u0e25\u0e02\u0e08\u0e33\u0e19\u0e27\u0e19\u0e19\u0e31\u0e1a", None))
         self.toolBox.setItemText(self.toolBox.indexOf(self.menu1), QCoreApplication.translate("MainWindow", u"\u0e2b\u0e21\u0e27\u0e14\u0e04\u0e33", None))
-        self.pushButton_6.setText(QCoreApplication.translate("MainWindow", u"\u0e2b\u0e21\u0e27\u0e14\u0e1b\u0e23\u0e30\u0e42\u0e22\u0e04\u0e1b\u0e0e\u0e34\u0e40\u0e2a\u0e18", None))
-        self.pushButton_7.setText(QCoreApplication.translate("MainWindow", u"\u0e2b\u0e21\u0e27\u0e14\u0e1b\u0e23\u0e30\u0e42\u0e22\u0e04\u0e04\u0e33\u0e16\u0e32\u0e21", None))
-        self.pushButton_8.setText(QCoreApplication.translate("MainWindow", u"\u0e2b\u0e21\u0e27\u0e14\u0e1b\u0e23\u0e30\u0e42\u0e22\u0e04\u0e17\u0e31\u0e48\u0e27\u0e44\u0e1b", None))
+        self.refuse.setText(QCoreApplication.translate("MainWindow", u"\u0e2b\u0e21\u0e27\u0e14\u0e1b\u0e23\u0e30\u0e42\u0e22\u0e04\u0e1b\u0e0e\u0e34\u0e40\u0e2a\u0e18", None))
+        self.question.setText(QCoreApplication.translate("MainWindow", u"\u0e2b\u0e21\u0e27\u0e14\u0e1b\u0e23\u0e30\u0e42\u0e22\u0e04\u0e04\u0e33\u0e16\u0e32\u0e21", None))
+        self.sentence.setText(QCoreApplication.translate("MainWindow", u"\u0e2b\u0e21\u0e27\u0e14\u0e1b\u0e23\u0e30\u0e42\u0e22\u0e04\u0e17\u0e31\u0e48\u0e27\u0e44\u0e1b", None))
         self.toolBox.setItemText(self.toolBox.indexOf(self.menu2), QCoreApplication.translate("MainWindow", u"\u0e2b\u0e21\u0e27\u0e14\u0e1b\u0e23\u0e30\u0e42\u0e22\u0e04", None))
-        self.pushButton_17.setText(QCoreApplication.translate("MainWindow", u"Picture", None))
-        self.pushButton_9.setText(QCoreApplication.translate("MainWindow", u"UPLOAD", None))
-        self.pushButton_10.setText(QCoreApplication.translate("MainWindow", u"TRAINING MODEL", None))
+        self.showpic.setText(QCoreApplication.translate("MainWindow", u"Picture", None))
+        self.upload.setText(QCoreApplication.translate("MainWindow", u"UPLOAD", None))
+        self.train2.setText(QCoreApplication.translate("MainWindow", u"TRAINING MODEL", None))
         self.pushButton.setText(QCoreApplication.translate("MainWindow", u"Exit", None))
         self.pushButton_16.setText("")
         self.pushButton_15.setText("")
@@ -588,6 +589,6 @@ class Ui_MainWindow(object):
         self.pushButton_12.setText("")
         self.pushButton_11.setText("")
         self.image_label.setText("")
-        self.lineEdit.setPlaceholderText(QCoreApplication.translate("MainWindow", u"       Text", None))
+        self.putText.setPlaceholderText(QCoreApplication.translate("MainWindow", u"       Text", None))
     # retranslateUi
 

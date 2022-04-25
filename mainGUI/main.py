@@ -17,17 +17,26 @@ from PyQt5.QtGui import QPixmap
 from PyQt5.QtCore import QTimer
 import tensorflow as tf
 
-
 class MainWindow(QMainWindow):
 	def __init__(self):
 		super().__init__()
 		self.ui = Ui_MainWindow()
 		self.ui.setupUi(self)	
-
 		self.timer = QTimer()
 		self.timer.timeout.connect(self.viewCam)
-		self.ui.pushButton_3.clicked.connect(self.controlTimer)
+		self.ui.train2.clicked.connect(self.train)
+		self.ui.upload.clicked.connect(self.addsing)
 
+	def train(self):
+		import train_258 
+		print("ไม่ต้องเทรนอีกครั้งเเล้ว")
+
+	def addsing(self):
+		import addSing258		
+		print("เพิ่มท่าแล้ว")
+
+	def test(self):
+		print("test")
 	def viewCam(self):
         # read image in BGR format
 		ret, image = self.cap.read()
@@ -63,6 +72,7 @@ class MainWindow(QMainWindow):
 ## EXECUTE APP
 ########################################################################
 if __name__ == "__main__":
+	
 	app = QApplication(sys.argv)
 	window = MainWindow()
 	window.show()
