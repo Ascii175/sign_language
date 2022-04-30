@@ -92,8 +92,10 @@ class train():
             # 'hungry','me','mhai','miss','name','nevermind','no','now','or','question',
             # 'rice','school','sorry','thank-you','time','toothache','what','worry','yang','you']
 
-            general  = ['nothing','you','age','how-much','have','question','mhai','Do-you-understand','name','what','eat','rice','or','yang','now','time','fine']
-            #general  = ['nothing']
+            #general  = ['nothing','you','age','how-much','have','question','mhai','Do-you-understand','name','what','eat','rice','or','yang','now','time','fine']
+
+            #general  = ['nothing','me','no','worry','thank-you','miss','nevermind','fine','sorry','toothache','hungry']
+            general  = ['nothing','me','Do-you-understand','eat','no','have','question','go','school','nevermind','thank-you']
             actions = np.array(general)
             # Thirty videos worth of data
             no_sequences = 20
@@ -134,14 +136,14 @@ class train():
             history = model.fit(X_train, y_train, epochs=300, validation_data=(X_test,y_test))
             model.summary()
             res = model.predict(X_test)
-            model.save('question.h5')
+            model.save('deny.h5')
             yhat = model.predict(X_test)
             ytrue = np.argmax(y_test, axis=1).tolist()
             yhat = np.argmax(yhat, axis=1).tolist()
             multilabel_confusion_matrix(ytrue, yhat)
             score = accuracy_score(ytrue, yhat)
             print("accuracy",score)
-            if score < 0.95 :
+            if score < 1.0 :
                     print("FAIL")
             else :
                     print("SUCCESS")

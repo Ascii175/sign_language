@@ -66,11 +66,9 @@ class MainWindow(QMainWindow):
 		import train_258 
 		print("ไม่ต้องเทรนอีกครั้งเเล้ว")
 	def reload(self):
-		print("ลูปนรก")
 		return 0
 	def upload(self):
 		import addSing258
-		print("ลูปนรก")
 	def quest(self):
 		def mediapipe_detection(image, model):
 				image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB) # COLOR CONVERSION BGR 2 RGB
