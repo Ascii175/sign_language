@@ -16,11 +16,20 @@ from PyQt5.QtWidgets import QWidget
 from PyQt5.QtGui import QImage
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtCore import QTimer
+from sklearn.model_selection import train_test_split
+from tensorflow.keras.utils import to_categorical
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import LSTM, Dense
+from tensorflow.keras.callbacks import TensorBoard
+from sklearn.metrics import multilabel_confusion_matrix, accuracy_score
+from sklearn.model_selection import train_test_split
+from tensorflow.keras.utils import to_categorical
 import tensorflow as tf
 from PIL import Image, ImageFont, ImageDraw
 from gtts import gTTS
 from playsound import *
 from function_sound_file import function_sound
+import speech_recognition as stt
 
 mp_holistic = mp.solutions.holistic # Holistic model 
 mp_drawing = mp.solutions.drawing_utils # Drawing utilities
@@ -57,9 +66,12 @@ class MainWindow(QMainWindow):
 		self.ui.setupUi(self)	
 		self.timer = QTimer()
 		self.timer.timeout.connect(self.viewCam)
+		
 		self.ui.train2.clicked.connect(self.train)
 		self.ui.pushButton_13.clicked.connect(self.reload)
+
 		self.ui.playSo.clicked.connect(self.playSo)
+		self.ui.mic.clicked.connect(self.microphone)
 
 		self.ui.question.clicked.connect(self.quest)
 		self.ui.sentence.clicked.connect(self.sentence)
@@ -72,6 +84,17 @@ class MainWindow(QMainWindow):
 	def reload(self):
 		return 0
 #################################################################################################################################################################
+	def microphone(self):
+		recog = stt.Recognizer()
+		with stt.Microphone() as mic:
+			print("กำลังอัดเสียง")
+			audio = recog.listen( mic )
+			try:
+				self.ui.textBrowser.append(recog.recognize_google(audio,None,'th'))
+			except stt.UnknownValueError:
+				print("Google ไม่เข้าใจเสียงที่นำเข้า")
+			except stt.RequestError as e:
+				print("ไม่สามารถนำข้อมูลมาจากบริการของ Google: {0}".format(e))
 
 #################################################################################################################################################################
 	def quest(self):
