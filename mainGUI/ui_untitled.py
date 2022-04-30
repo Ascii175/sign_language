@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'untitledfNPptv.ui'
+## Form generated from reading UI file 'untitledilMLRM.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -324,28 +324,28 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_4.addWidget(self.showpic)
 
+        self.train2 = QPushButton(self.frame_9)
+        self.train2.setObjectName(u"train2")
+        self.train2.setFont(font)
+        self.train2.setStyleSheet(u"background-color: rgb(0, 0, 0);")
+        icon6 = QIcon()
+        icon6.addFile(u":/icons/icons/activity.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.train2.setIcon(icon6)
+        self.train2.setIconSize(QSize(32, 32))
+
+        self.verticalLayout_4.addWidget(self.train2)
+
         self.upload = QPushButton(self.frame_9)
         self.upload.setObjectName(u"upload")
         self.upload.setFont(font)
         self.upload.setStyleSheet(u"background-color: rgb(0, 0, 0);\n"
 "")
-        icon6 = QIcon()
-        icon6.addFile(u":/icons/icons/upload.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.upload.setIcon(icon6)
+        icon7 = QIcon()
+        icon7.addFile(u":/icons/icons/upload.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.upload.setIcon(icon7)
         self.upload.setIconSize(QSize(32, 32))
 
-        self.verticalLayout_4.addWidget(self.upload, 0, Qt.AlignBottom)
-
-        self.train2 = QPushButton(self.frame_9)
-        self.train2.setObjectName(u"train2")
-        self.train2.setFont(font)
-        self.train2.setStyleSheet(u"background-color: rgb(0, 0, 0);")
-        icon7 = QIcon()
-        icon7.addFile(u":/icons/icons/activity.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.train2.setIcon(icon7)
-        self.train2.setIconSize(QSize(32, 32))
-
-        self.verticalLayout_4.addWidget(self.train2)
+        self.verticalLayout_4.addWidget(self.upload)
 
 
         self.verticalLayout_3.addWidget(self.frame_9)
@@ -444,7 +444,7 @@ class Ui_MainWindow(object):
         self.pushButton_13 = QPushButton(self.frame)
         self.pushButton_13.setObjectName(u"pushButton_13")
         icon9 = QIcon()
-        icon9.addFile(u":/icons/icons/arrow-down-left.svg", QSize(), QIcon.Normal, QIcon.Off)
+        icon9.addFile(u":/icons/icons/loader.svg", QSize(), QIcon.Normal, QIcon.Off)
         self.pushButton_13.setIcon(icon9)
         self.pushButton_13.setIconSize(QSize(22, 22))
 
@@ -496,11 +496,27 @@ class Ui_MainWindow(object):
         self.frame_6.setFrameShadow(QFrame.Raised)
         self.horizontalLayout_7 = QHBoxLayout(self.frame_6)
         self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
+        self.playSo = QPushButton(self.frame_6)
+        self.playSo.setObjectName(u"playSo")
+        self.playSo.setStyleSheet(u"border:3px solid rgb(230, 5, 64);\n"
+"border-radius:20px\n"
+"")
+        icon12 = QIcon()
+        icon12.addFile(u":/icons/icons/volume-2.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.playSo.setIcon(icon12)
+        self.playSo.setIconSize(QSize(32, 32))
+
+        self.horizontalLayout_7.addWidget(self.playSo)
+
         self.textBrowser = QTextBrowser(self.frame_6)
         self.textBrowser.setObjectName(u"textBrowser")
         self.textBrowser.setMaximumSize(QSize(16777215, 500))
+        font4 = QFont()
+        font4.setPointSize(30)
+        self.textBrowser.setFont(font4)
         self.textBrowser.setStyleSheet(u"border:3px solid rgb(230,5,64);\n"
-"background-color: rgb(0, 0, 0);")
+"background-color: rgb(0, 0, 0);\n"
+"")
 
         self.horizontalLayout_7.addWidget(self.textBrowser)
 
@@ -527,9 +543,9 @@ class Ui_MainWindow(object):
 "border-radius:20px\n"
 "")
         self.mic.setText(u"")
-        icon12 = QIcon()
-        icon12.addFile(u":/icons/icons/mic.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.mic.setIcon(icon12)
+        icon13 = QIcon()
+        icon13.addFile(u":/icons/icons/mic.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.mic.setIcon(icon13)
         self.mic.setIconSize(QSize(32, 32))
 
         self.horizontalLayout_8.addWidget(self.mic)
@@ -537,9 +553,9 @@ class Ui_MainWindow(object):
         self.putText = QLineEdit(self.frame_7)
         self.putText.setObjectName(u"putText")
         self.putText.setMaximumSize(QSize(600, 70))
-        font4 = QFont()
-        font4.setPointSize(22)
-        self.putText.setFont(font4)
+        font5 = QFont()
+        font5.setPointSize(22)
+        self.putText.setFont(font5)
         self.putText.setStyleSheet(u"lineEdit,QLineEdit{\n"
 "	background-color: rgb(0, 0, 0);\n"
 "	border-bottom:3px solid rgb(230,5,64);\n"
@@ -560,7 +576,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.toolBox.setCurrentIndex(1)
+        self.toolBox.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -580,8 +596,8 @@ class Ui_MainWindow(object):
         self.sentence.setText(QCoreApplication.translate("MainWindow", u"\u0e2b\u0e21\u0e27\u0e14\u0e1b\u0e23\u0e30\u0e42\u0e22\u0e04\u0e17\u0e31\u0e48\u0e27\u0e44\u0e1b", None))
         self.toolBox.setItemText(self.toolBox.indexOf(self.menu2), QCoreApplication.translate("MainWindow", u"\u0e2b\u0e21\u0e27\u0e14\u0e1b\u0e23\u0e30\u0e42\u0e22\u0e04", None))
         self.showpic.setText(QCoreApplication.translate("MainWindow", u"Picture", None))
-        self.upload.setText(QCoreApplication.translate("MainWindow", u"UPLOAD", None))
         self.train2.setText(QCoreApplication.translate("MainWindow", u"TRAINING MODEL", None))
+        self.upload.setText(QCoreApplication.translate("MainWindow", u"UPLOAD", None))
         self.pushButton.setText(QCoreApplication.translate("MainWindow", u"Exit", None))
         self.pushButton_16.setText("")
         self.pushButton_15.setText("")
@@ -589,6 +605,7 @@ class Ui_MainWindow(object):
         self.pushButton_12.setText("")
         self.pushButton_11.setText("")
         self.image_label.setText("")
+        self.playSo.setText("")
         self.putText.setPlaceholderText(QCoreApplication.translate("MainWindow", u"       Text", None))
     # retranslateUi
 

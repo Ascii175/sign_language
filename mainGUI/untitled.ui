@@ -206,15 +206,15 @@ QPushButton{
 </string>
                </property>
                <property name="currentIndex">
-                <number>1</number>
+                <number>0</number>
                </property>
                <widget class="QWidget" name="menu1">
                 <property name="geometry">
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>183</width>
-                  <height>244</height>
+                  <width>230</width>
+                  <height>250</height>
                  </rect>
                 </property>
                 <property name="styleSheet">
@@ -951,35 +951,6 @@ QPushButton{
                </property>
               </widget>
              </item>
-             <item alignment="Qt::AlignBottom">
-              <widget class="QPushButton" name="upload">
-               <property name="font">
-                <font>
-                 <family>TH Mali Grade 6</family>
-                 <pointsize>22</pointsize>
-                 <weight>75</weight>
-                 <bold>true</bold>
-                </font>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">background-color: rgb(0, 0, 0);
-</string>
-               </property>
-               <property name="text">
-                <string>UPLOAD</string>
-               </property>
-               <property name="icon">
-                <iconset resource="icons.qrc">
-                 <normaloff>:/icons/icons/upload.svg</normaloff>:/icons/icons/upload.svg</iconset>
-               </property>
-               <property name="iconSize">
-                <size>
-                 <width>32</width>
-                 <height>32</height>
-                </size>
-               </property>
-              </widget>
-             </item>
              <item>
               <widget class="QPushButton" name="train2">
                <property name="font">
@@ -999,6 +970,35 @@ QPushButton{
                <property name="icon">
                 <iconset resource="icons.qrc">
                  <normaloff>:/icons/icons/activity.svg</normaloff>:/icons/icons/activity.svg</iconset>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>32</width>
+                 <height>32</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="upload">
+               <property name="font">
+                <font>
+                 <family>TH Mali Grade 6</family>
+                 <pointsize>22</pointsize>
+                 <weight>75</weight>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(0, 0, 0);
+</string>
+               </property>
+               <property name="text">
+                <string>UPLOAD</string>
+               </property>
+               <property name="icon">
+                <iconset resource="icons.qrc">
+                 <normaloff>:/icons/icons/upload.svg</normaloff>:/icons/icons/upload.svg</iconset>
                </property>
                <property name="iconSize">
                 <size>
@@ -1242,7 +1242,7 @@ QPushButton{
                </property>
                <property name="icon">
                 <iconset resource="icons.qrc">
-                 <normaloff>:/icons/icons/arrow-down-left.svg</normaloff>:/icons/icons/arrow-down-left.svg</iconset>
+                 <normaloff>:/icons/icons/loader.svg</normaloff>:/icons/icons/loader.svg</iconset>
                </property>
                <property name="iconSize">
                 <size>
@@ -1333,6 +1333,28 @@ QPushButton{
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_7">
           <item>
+           <widget class="QPushButton" name="playSo">
+            <property name="styleSheet">
+             <string notr="true">border:3px solid rgb(230, 5, 64);
+border-radius:20px
+</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="icons.qrc">
+              <normaloff>:/icons/icons/volume-2.svg</normaloff>:/icons/icons/volume-2.svg</iconset>
+            </property>
+            <property name="iconSize">
+             <size>
+              <width>32</width>
+              <height>32</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item>
            <widget class="QTextBrowser" name="textBrowser">
             <property name="maximumSize">
              <size>
@@ -1340,9 +1362,15 @@ QPushButton{
               <height>500</height>
              </size>
             </property>
+            <property name="font">
+             <font>
+              <pointsize>30</pointsize>
+             </font>
+            </property>
             <property name="styleSheet">
              <string notr="true">border:3px solid rgb(230,5,64);
-background-color: rgb(0, 0, 0);</string>
+background-color: rgb(0, 0, 0);
+</string>
             </property>
            </widget>
           </item>

@@ -34,7 +34,7 @@ mp_holistic = mp.solutions.holistic # Holistic model
 mp_drawing = mp.solutions.drawing_utils # Drawing utilities 
 class train():
         score = 0
-        while 1 >= score:
+        while 0.97 >= score:
             def mediapipe_detection(image, model):
                 image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB) # COLOR CONVERSION BGR 2 RGB
                 image.flags.writeable = False                  # Image is no longer writeable
@@ -75,7 +75,7 @@ class train():
                 rh = np.array([[res.x, res.y, res.z] for res in results.right_hand_landmarks.landmark]).flatten() if results.right_hand_landmarks else np.zeros(21*3)
                 return np.concatenate([pose, lh, rh])
             # Path for exported data, numpy arrays
-            DATA_PATH = os.path.join('test_Data') 
+            DATA_PATH = os.path.join('MP_Data') 
 
             # Actions that we try to detect
             # ADD ACTION HERE 
@@ -92,7 +92,8 @@ class train():
             # 'hungry','me','mhai','miss','name','nevermind','no','now','or','question',
             # 'rice','school','sorry','thank-you','time','toothache','what','worry','yang','you']
 
-            general  = ['test']
+            general  = ['nothing','you','age','how-much','have','question','mhai','Do-you-understand','name','what','eat','rice','or','yang','now','time','fine']
+            #general  = ['nothing']
             actions = np.array(general)
             # Thirty videos worth of data
             no_sequences = 20
@@ -130,17 +131,17 @@ class train():
             callback = EarlyStopping(monitor='loss', patience=10)
             model.compile(optimizer=Adam(lr=0.00005),loss='categorical_crossentropy',metrics=['accuracy'])
             model.summary()
-            history = model.fit(X_train, y_train, epochs=3, validation_data=(X_test,y_test))
+            history = model.fit(X_train, y_train, epochs=300, validation_data=(X_test,y_test))
             model.summary()
             res = model.predict(X_test)
-            model.save('test.h5')
+            model.save('question.h5')
             yhat = model.predict(X_test)
             ytrue = np.argmax(y_test, axis=1).tolist()
             yhat = np.argmax(yhat, axis=1).tolist()
             multilabel_confusion_matrix(ytrue, yhat)
             score = accuracy_score(ytrue, yhat)
             print("accuracy",score)
-            if score < 1 :
+            if score < 0.95 :
                     print("FAIL")
             else :
                     print("SUCCESS")
