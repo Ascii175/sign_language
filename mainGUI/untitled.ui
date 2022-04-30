@@ -206,7 +206,7 @@ QPushButton{
 </string>
                </property>
                <property name="currentIndex">
-                <number>0</number>
+                <number>1</number>
                </property>
                <widget class="QWidget" name="menu1">
                 <property name="geometry">
@@ -643,7 +643,7 @@ QPushButton{
                      <number>9</number>
                     </property>
                     <item alignment="Qt::AlignLeft">
-                     <widget class="QPushButton" name="refuse">
+                     <widget class="QPushButton" name="deny">
                       <property name="font">
                        <font>
                         <family>TH Mali Grade 6</family>

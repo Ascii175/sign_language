@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'untitledilMLRM.ui'
+## Form generated from reading UI file 'untitledDeQAql.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -241,15 +241,15 @@ class Ui_MainWindow(object):
         self.verticalLayout_8 = QVBoxLayout(self.frame_12)
         self.verticalLayout_8.setObjectName(u"verticalLayout_8")
         self.verticalLayout_8.setContentsMargins(9, 9, -1, -1)
-        self.refuse = QPushButton(self.frame_12)
-        self.refuse.setObjectName(u"refuse")
-        self.refuse.setFont(font1)
+        self.deny = QPushButton(self.frame_12)
+        self.deny.setObjectName(u"deny")
+        self.deny.setFont(font1)
         icon2 = QIcon()
         icon2.addFile(u":/icons/icons/github.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.refuse.setIcon(icon2)
-        self.refuse.setIconSize(QSize(32, 32))
+        self.deny.setIcon(icon2)
+        self.deny.setIconSize(QSize(32, 32))
 
-        self.verticalLayout_8.addWidget(self.refuse, 0, Qt.AlignLeft)
+        self.verticalLayout_8.addWidget(self.deny, 0, Qt.AlignLeft)
 
         self.question = QPushButton(self.frame_12)
         self.question.setObjectName(u"question")
@@ -576,7 +576,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.toolBox.setCurrentIndex(0)
+        self.toolBox.setCurrentIndex(1)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -591,7 +591,7 @@ class Ui_MainWindow(object):
         self.day.setText(QCoreApplication.translate("MainWindow", u"\u0e2b\u0e21\u0e27\u0e14\u0e27\u0e31\u0e19\u0e40\u0e14\u0e37\u0e2d\u0e19\u0e1b\u0e35", None))
         self.num.setText(QCoreApplication.translate("MainWindow", u"\u0e2b\u0e21\u0e27\u0e14\u0e15\u0e31\u0e27\u0e40\u0e25\u0e02\u0e08\u0e33\u0e19\u0e27\u0e19\u0e19\u0e31\u0e1a", None))
         self.toolBox.setItemText(self.toolBox.indexOf(self.menu1), QCoreApplication.translate("MainWindow", u"\u0e2b\u0e21\u0e27\u0e14\u0e04\u0e33", None))
-        self.refuse.setText(QCoreApplication.translate("MainWindow", u"\u0e2b\u0e21\u0e27\u0e14\u0e1b\u0e23\u0e30\u0e42\u0e22\u0e04\u0e1b\u0e0e\u0e34\u0e40\u0e2a\u0e18", None))
+        self.deny.setText(QCoreApplication.translate("MainWindow", u"\u0e2b\u0e21\u0e27\u0e14\u0e1b\u0e23\u0e30\u0e42\u0e22\u0e04\u0e1b\u0e0e\u0e34\u0e40\u0e2a\u0e18", None))
         self.question.setText(QCoreApplication.translate("MainWindow", u"\u0e2b\u0e21\u0e27\u0e14\u0e1b\u0e23\u0e30\u0e42\u0e22\u0e04\u0e04\u0e33\u0e16\u0e32\u0e21", None))
         self.sentence.setText(QCoreApplication.translate("MainWindow", u"\u0e2b\u0e21\u0e27\u0e14\u0e1b\u0e23\u0e30\u0e42\u0e22\u0e04\u0e17\u0e31\u0e48\u0e27\u0e44\u0e1b", None))
         self.toolBox.setItemText(self.toolBox.indexOf(self.menu2), QCoreApplication.translate("MainWindow", u"\u0e2b\u0e21\u0e27\u0e14\u0e1b\u0e23\u0e30\u0e42\u0e22\u0e04", None))
