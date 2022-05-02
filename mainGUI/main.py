@@ -73,6 +73,8 @@ class MainWindow(QMainWindow):
 		self.ui.playSo.clicked.connect(self.playSo)
 		self.ui.mic.clicked.connect(self.microphone)
 
+		self.ui.time.clicked.connect(self.time)
+		self.ui.general.clicked.connect(self.general_1662)
 		self.ui.question.clicked.connect(self.quest)
 		self.ui.sentence.clicked.connect(self.sentence)
 		self.ui.deny.clicked.connect(self.deny)
@@ -84,6 +86,330 @@ class MainWindow(QMainWindow):
 	def reload(self):
 		return 0
 #################################################################################################################################################################
+	def time(self):
+		def mediapipe_detection(image, model):
+				image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB) # COLOR CONVERSION BGR 2 RGB
+				image.flags.writeable = False                  # Image is no longer writeable
+				results = model.process(image)                 # Make prediction
+				image.flags.writeable = True                   # Image is now writeable 
+				image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR) # COLOR COVERSION RGB 2 BGR
+				return image, results
+		def extract_keypoints(results, model_name):
+				pose = np.array([[res.x, res.y, res.z, res.visibility] for res in results.pose_landmarks.landmark]).flatten() if results.pose_landmarks else np.zeros(33*4)
+					#face = np.array([[res.x, res.y, res.z] for res in results.face_landmarks.landmark]).flatten() if results.face_landmarks else np.zeros(468*3)
+				lh = np.array([[res.x, res.y, res.z] for res in results.left_hand_landmarks.landmark]).flatten() if results.left_hand_landmarks else np.zeros(21*3)
+				rh = np.array([[res.x, res.y, res.z] for res in results.right_hand_landmarks.landmark]).flatten() if results.right_hand_landmarks else np.zeros(21*3)
+				if model_name ==  'time.h5':
+					return np.concatenate([pose, lh, rh])
+				else: 
+					return np.concatenate([rh]) 
+
+		def get_action(name):
+				if name == 'time.h5':
+					return time
+				elif name =='test.h5':
+					return new
+
+		time = ['nothing','lunch','midday','midnight','12pm','dinner','almost-midnight']
+		#question = ['nothing','you','age','how-much','have','question','mhai','Do-you-understand',
+		#			'name','what','eat','rice','or','yang','now','time','fine']
+		new = ['nothing','day','my']
+		model_name = {'time':'time.h5',
+						'new' : 'test.h5'}
+		name = model_name['time']   
+		actions = np.array(get_action(name))
+		model = tf.keras.models.load_model(name)
+		colors=[]
+		for i in range(100):
+			colors.append((np.random.randint(256),np.random.randint(256),np.random.randint(256)))  
+		def prob_viz(res, actions, input_frame, colors):
+				scale = 0.25
+				output_frame = input_frame.copy()
+				for num, prob in enumerate(res):
+					cv2.rectangle(output_frame, (0,int(40+num*35*scale)), (int(prob*100*scale), int(50+num*35*scale)), colors[num], -1)
+					cv2.putText(output_frame, actions[num], (0, int(50+num*35*scale)),cv2.FONT_HERSHEY_SIMPLEX, 0.4, (255,255,255), 1, cv2.LINE_AA)
+				return output_frame
+		sequence = []
+		sentence = []
+		predictions = []
+		threshold = 0.8
+		predicted = ''
+		text = ""
+		count_same_frame = 0
+		keypress = cv2.waitKey(1)
+		wCam, hCam = 1280,720
+		cap = cv2.VideoCapture(0)
+		cap.set(3, wCam)
+		cap.set(4, hCam)
+			# Set mediapipe model 
+		with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=0.5) as holistic:
+			while cap.isOpened():
+					# Read feed
+				ret, frame = cap.read()
+				old_text = predicted
+					# Make detections
+				image, results = mediapipe_detection(frame, holistic)
+				#print(results)
+				cv2.rectangle(image, (0,0), (100, 640), (0, 0, 0), -1)
+					# Draw landmarks
+				draw_styled_landmarks(image, results)
+					# 2. Prediction logic
+					#keypoints = extract_keypoints(results)
+				keypoints = extract_keypoints(results,model_name=name)
+				sequence.append(keypoints)
+				sequence = sequence[-30:]
+				if len(sequence) == 30:
+					res = model.predict(np.expand_dims(sequence, axis=0))[0]
+					predicted = actions[np.argmax(res)]
+					predictions.append(np.argmax(res))  
+					old_text = predicted
+					if old_text == "nothing":
+						count_same_frame = 0
+					elif old_text == word:
+						count_same_frame += 1			
+
+					if predicted == "nothing":
+						if count_same_frame >= 150 :
+							text = ''
+					elif count_same_frame > 50:
+						if len(predicted) == 1:
+							Thread(args=(predicted, )).start()
+						
+						text = text + ' ' + predicted
+						tts = gTTS(text, lang='th')
+						tts.save('speech.mp3')
+						self.ui.textBrowser.append(text) 
+						print(text)
+											
+						count_same_frame = 0
+					image = prob_viz(res, actions, image, colors) 
+				word = predicted
+				#print(word)
+				cv2.rectangle(image, (0,0), (640, 40), (245, 117, 16), -1)
+				cv2.putText(image, word, (3,30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA)  
+				cv2.imshow('OpenCV Feed', image)  
+					# Break gracefully
+				if cv2.waitKey(10) & 0xFF == ord('q'):
+					break
+			cap.release()
+			cv2.destroyAllWindows()
+##############################################################################################################################################################
+	def general_1662(self):
+		def mediapipe_detection(image, model):
+				image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB) # COLOR CONVERSION BGR 2 RGB
+				image.flags.writeable = False                  # Image is no longer writeable
+				results = model.process(image)                 # Make prediction
+				image.flags.writeable = True                   # Image is now writeable 
+				image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR) # COLOR COVERSION RGB 2 BGR
+				return image, results
+		def extract_keypoints(results, model_name):
+				pose = np.array([[res.x, res.y, res.z, res.visibility] for res in results.pose_landmarks.landmark]).flatten() if results.pose_landmarks else np.zeros(33*4)
+					#face = np.array([[res.x, res.y, res.z] for res in results.face_landmarks.landmark]).flatten() if results.face_landmarks else np.zeros(468*3)
+				lh = np.array([[res.x, res.y, res.z] for res in results.left_hand_landmarks.landmark]).flatten() if results.left_hand_landmarks else np.zeros(21*3)
+				rh = np.array([[res.x, res.y, res.z] for res in results.right_hand_landmarks.landmark]).flatten() if results.right_hand_landmarks else np.zeros(21*3)
+				if model_name ==  'general.h5':
+					return np.concatenate([pose, lh, rh])
+				else: 
+					return np.concatenate([rh]) 
+
+		def get_action(name):
+				if name == 'general.h5':
+					return general
+				elif name =='general.h5':
+					return new
+
+		general = ['name','lastname','me','you','fun','yes','no','sorry','good-luck','howmuch','dislike','Beautiful','remember','age','what-is-your-name','fine','sick']
+		#question = ['nothing','you','age','how-much','have','question','mhai','Do-you-understand',
+		#			'name','what','eat','rice','or','yang','now','time','fine']
+		new = ['nothing','day','my']
+		model_name = {'general':'general.h5',
+						'new' : 'test.h5'}
+		name = model_name['general']   
+		actions = np.array(get_action(name))
+		model = tf.keras.models.load_model(name)
+		colors=[]
+		for i in range(100):
+			colors.append((np.random.randint(256),np.random.randint(256),np.random.randint(256)))  
+		def prob_viz(res, actions, input_frame, colors):
+				scale = 0.25
+				output_frame = input_frame.copy()
+				for num, prob in enumerate(res):
+					cv2.rectangle(output_frame, (0,int(40+num*35*scale)), (int(prob*100*scale), int(50+num*35*scale)), colors[num], -1)
+					cv2.putText(output_frame, actions[num], (0, int(50+num*35*scale)),cv2.FONT_HERSHEY_SIMPLEX, 0.4, (255,255,255), 1, cv2.LINE_AA)
+				return output_frame
+		sequence = []
+		sentence = []
+		predictions = []
+		threshold = 0.8
+		predicted = ''
+		text = ""
+		count_same_frame = 0
+		keypress = cv2.waitKey(1)
+		wCam, hCam = 1280,720
+		cap = cv2.VideoCapture(0)
+		cap.set(3, wCam)
+		cap.set(4, hCam)
+			# Set mediapipe model 
+		with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=0.5) as holistic:
+			while cap.isOpened():
+					# Read feed
+				ret, frame = cap.read()
+				old_text = predicted
+					# Make detections
+				image, results = mediapipe_detection(frame, holistic)
+				#print(results)
+				cv2.rectangle(image, (0,0), (100, 640), (0, 0, 0), -1)
+					# Draw landmarks
+				draw_styled_landmarks(image, results)
+					# 2. Prediction logic
+					#keypoints = extract_keypoints(results)
+				keypoints = extract_keypoints(results,model_name=name)
+				sequence.append(keypoints)
+				sequence = sequence[-30:]
+				if len(sequence) == 30:
+					res = model.predict(np.expand_dims(sequence, axis=0))[0]
+					predicted = actions[np.argmax(res)]
+					predictions.append(np.argmax(res))  
+					old_text = predicted
+					if old_text == "nothing":
+						count_same_frame = 0
+					elif old_text == word:
+						count_same_frame += 1			
+
+					if predicted == "nothing":
+						if count_same_frame >= 150 :
+							text = ''
+					elif count_same_frame > 50:
+						if len(predicted) == 1:
+							Thread(args=(predicted, )).start()
+						
+						text = text + ' ' + predicted
+						tts = gTTS(text, lang='th')
+						tts.save('speech.mp3')
+						self.ui.textBrowser.append(text) 
+						print(text)
+											
+						count_same_frame = 0
+					image = prob_viz(res, actions, image, colors) 
+				word = predicted
+				#print(word)
+				cv2.rectangle(image, (0,0), (640, 40), (245, 117, 16), -1)
+				cv2.putText(image, word, (3,30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA)  
+				cv2.imshow('OpenCV Feed', image)  
+					# Break gracefully
+				if cv2.waitKey(10) & 0xFF == ord('q'):
+					break
+			cap.release()
+			cv2.destroyAllWindows()
+######################################################################################################################################################################
+	def day(self):
+		def mediapipe_detection(image, model):
+				image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB) # COLOR CONVERSION BGR 2 RGB
+				image.flags.writeable = False                  # Image is no longer writeable
+				results = model.process(image)                 # Make prediction
+				image.flags.writeable = True                   # Image is now writeable 
+				image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR) # COLOR COVERSION RGB 2 BGR
+				return image, results
+		def extract_keypoints(results, model_name):
+				pose = np.array([[res.x, res.y, res.z, res.visibility] for res in results.pose_landmarks.landmark]).flatten() if results.pose_landmarks else np.zeros(33*4)
+					#face = np.array([[res.x, res.y, res.z] for res in results.face_landmarks.landmark]).flatten() if results.face_landmarks else np.zeros(468*3)
+				lh = np.array([[res.x, res.y, res.z] for res in results.left_hand_landmarks.landmark]).flatten() if results.left_hand_landmarks else np.zeros(21*3)
+				rh = np.array([[res.x, res.y, res.z] for res in results.right_hand_landmarks.landmark]).flatten() if results.right_hand_landmarks else np.zeros(21*3)
+				if model_name ==  'general.h5':
+					return np.concatenate([pose, lh, rh])
+				else: 
+					return np.concatenate([rh]) 
+
+		def get_action(name):
+				if name == 'general.h5':
+					return general
+				elif name =='general.h5':
+					return new
+
+		general = ['name','lastname','me','you','fun','yes','no','sorry','good-luck','howmuch','dislike','Beautiful','remember','age','what-is-your-name','fine','sick']
+		#question = ['nothing','you','age','how-much','have','question','mhai','Do-you-understand',
+		#			'name','what','eat','rice','or','yang','now','time','fine']
+		new = ['nothing','day','my']
+		model_name = {'general':'general.h5',
+						'new' : 'test.h5'}
+		name = model_name['general']   
+		actions = np.array(get_action(name))
+		model = tf.keras.models.load_model(name)
+		colors=[]
+		for i in range(100):
+			colors.append((np.random.randint(256),np.random.randint(256),np.random.randint(256)))  
+		def prob_viz(res, actions, input_frame, colors):
+				scale = 0.25
+				output_frame = input_frame.copy()
+				for num, prob in enumerate(res):
+					cv2.rectangle(output_frame, (0,int(40+num*35*scale)), (int(prob*100*scale), int(50+num*35*scale)), colors[num], -1)
+					cv2.putText(output_frame, actions[num], (0, int(50+num*35*scale)),cv2.FONT_HERSHEY_SIMPLEX, 0.4, (255,255,255), 1, cv2.LINE_AA)
+				return output_frame
+		sequence = []
+		sentence = []
+		predictions = []
+		threshold = 0.8
+		predicted = ''
+		text = ""
+		count_same_frame = 0
+		keypress = cv2.waitKey(1)
+		wCam, hCam = 1280,720
+		cap = cv2.VideoCapture(0)
+		cap.set(3, wCam)
+		cap.set(4, hCam)
+			# Set mediapipe model 
+		with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=0.5) as holistic:
+			while cap.isOpened():
+					# Read feed
+				ret, frame = cap.read()
+				old_text = predicted
+					# Make detections
+				image, results = mediapipe_detection(frame, holistic)
+				#print(results)
+				cv2.rectangle(image, (0,0), (100, 640), (0, 0, 0), -1)
+					# Draw landmarks
+				draw_styled_landmarks(image, results)
+					# 2. Prediction logic
+					#keypoints = extract_keypoints(results)
+				keypoints = extract_keypoints(results,model_name=name)
+				sequence.append(keypoints)
+				sequence = sequence[-30:]
+				if len(sequence) == 30:
+					res = model.predict(np.expand_dims(sequence, axis=0))[0]
+					predicted = actions[np.argmax(res)]
+					predictions.append(np.argmax(res))  
+					old_text = predicted
+					if old_text == "nothing":
+						count_same_frame = 0
+					elif old_text == word:
+						count_same_frame += 1			
+
+					if predicted == "nothing":
+						if count_same_frame >= 150 :
+							text = ''
+					elif count_same_frame > 50:
+						if len(predicted) == 1:
+							Thread(args=(predicted, )).start()
+						
+						text = text + ' ' + predicted
+						tts = gTTS(text, lang='th')
+						tts.save('speech.mp3')
+						self.ui.textBrowser.append(text) 
+						print(text)
+											
+						count_same_frame = 0
+					image = prob_viz(res, actions, image, colors) 
+				word = predicted
+				#print(word)
+				cv2.rectangle(image, (0,0), (640, 40), (245, 117, 16), -1)
+				cv2.putText(image, word, (3,30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA)  
+				cv2.imshow('OpenCV Feed', image)  
+					# Break gracefully
+				if cv2.waitKey(10) & 0xFF == ord('q'):
+					break
+			cap.release()
+			cv2.destroyAllWindows()
+##################################################################################################################################################################
 	def microphone(self):
 		recog = stt.Recognizer()
 		with stt.Microphone() as mic:
@@ -95,7 +421,6 @@ class MainWindow(QMainWindow):
 				print("ไม่เข้าใจเสียงที่นำเข้า")
 			except stt.RequestError as e:
 				print("ไม่สามารถนำข้อมูลมาจากบริการของ Google: {0}".format(e))
-
 #################################################################################################################################################################
 	def quest(self):
 		def mediapipe_detection(image, model):
@@ -201,9 +526,6 @@ class MainWindow(QMainWindow):
 				cv2.rectangle(image, (0,0), (640, 40), (245, 117, 16), -1)
 				cv2.putText(image, word, (3,30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA)  
 				cv2.imshow('OpenCV Feed', image)  
-
-				
-					
 					# Break gracefully
 				if cv2.waitKey(10) & 0xFF == ord('q'):
 					break
@@ -441,7 +763,6 @@ class MainWindow(QMainWindow):
 		qImg = QImage(image.data, width, height, step, QImage.Format_RGB888)
         # show image in img_label
 		self.ui.image_label.setPixmap(QPixmap.fromImage(qImg))
-
     # start/stop timer
 	def controlTimer(self):
 			# if timer is stopped
