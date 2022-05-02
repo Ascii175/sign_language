@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'untitledDeQAql.ui'
+## Form generated from reading UI file 'untitledkCdUSm.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -486,6 +486,14 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_11.addWidget(self.image_label)
 
+        self.next = QPushButton(self.main_body_conten)
+        self.next.setObjectName(u"next")
+        icon12 = QIcon()
+        icon12.addFile(u":/icons/icons/chevron-right.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.next.setIcon(icon12)
+
+        self.verticalLayout_11.addWidget(self.next)
+
 
         self.verticalLayout.addWidget(self.main_body_conten)
 
@@ -501,9 +509,9 @@ class Ui_MainWindow(object):
         self.playSo.setStyleSheet(u"border:3px solid rgb(230, 5, 64);\n"
 "border-radius:20px\n"
 "")
-        icon12 = QIcon()
-        icon12.addFile(u":/icons/icons/volume-2.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.playSo.setIcon(icon12)
+        icon13 = QIcon()
+        icon13.addFile(u":/icons/icons/volume-2.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.playSo.setIcon(icon13)
         self.playSo.setIconSize(QSize(32, 32))
 
         self.horizontalLayout_7.addWidget(self.playSo)
@@ -512,6 +520,7 @@ class Ui_MainWindow(object):
         self.textBrowser.setObjectName(u"textBrowser")
         self.textBrowser.setMaximumSize(QSize(16777215, 500))
         font4 = QFont()
+        font4.setFamily(u"TH Mali Grade 6")
         font4.setPointSize(30)
         self.textBrowser.setFont(font4)
         self.textBrowser.setStyleSheet(u"border:3px solid rgb(230,5,64);\n"
@@ -543,9 +552,9 @@ class Ui_MainWindow(object):
 "border-radius:20px\n"
 "")
         self.mic.setText(u"")
-        icon13 = QIcon()
-        icon13.addFile(u":/icons/icons/mic.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.mic.setIcon(icon13)
+        icon14 = QIcon()
+        icon14.addFile(u":/icons/icons/mic.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.mic.setIcon(icon14)
         self.mic.setIconSize(QSize(32, 32))
 
         self.horizontalLayout_8.addWidget(self.mic)
@@ -605,6 +614,7 @@ class Ui_MainWindow(object):
         self.pushButton_12.setText("")
         self.pushButton_11.setText("")
         self.image_label.setText("")
+        self.next.setText("")
         self.playSo.setText("")
         self.putText.setPlaceholderText(QCoreApplication.translate("MainWindow", u"       Text", None))
     # retranslateUi

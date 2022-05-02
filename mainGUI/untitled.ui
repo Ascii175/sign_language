@@ -1314,6 +1314,17 @@ QPushButton{
             </property>
            </widget>
           </item>
+          <item>
+           <widget class="QPushButton" name="next">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="icon">
+             <iconset resource="icons.qrc">
+              <normaloff>:/icons/icons/chevron-right.svg</normaloff>:/icons/icons/chevron-right.svg</iconset>
+            </property>
+           </widget>
+          </item>
          </layout>
         </widget>
        </item>
@@ -1364,6 +1375,7 @@ border-radius:20px
             </property>
             <property name="font">
              <font>
+              <family>TH Mali Grade 6</family>
               <pointsize>30</pointsize>
              </font>
             </property>
