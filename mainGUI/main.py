@@ -121,8 +121,10 @@ class MainWindow(QMainWindow):
 				elif name =='test.h5':
 					return new
 
-		question = ['nothing','you','age','how-much','have','question','mhai','Do-you-understand',
-					'name','what','eat','rice','or','yang','now','time','สบายดี']
+		question = ['nothing','คุณ','อายุ','เท่าไหร่','มี','คำถาม','ไหม','เข้าใจ',
+					'ชื่อ','อะไร','กิน','ข้าว','หรือ','ยัง','ตอนนี้','เวลา','สบายดี']
+		#question = ['nothing','you','age','how-much','have','question','mhai','Do-you-understand',
+		#			'name','what','eat','rice','or','yang','now','time','fine']
 		new = ['nothing','day','my']
 
 		model_name = {'question':'question.h5',
@@ -232,7 +234,8 @@ class MainWindow(QMainWindow):
 				elif name =='test.h5':
 					return new
 
-		sentence = ['nothing','me','no','worry','thank-you','miss','nevermind','fine','sorry','toothache','hungry']
+		sentence = ['nothing','ฉัน','ไม่','ไม่สบายใจ','ขอบคุณ','คิดถึง','ไม่เป็นไร','สบายดี','ขอโทษ','ปวดฟัน','หิว']
+		#sentence = ['nothing','me','no','worry','thank-you','miss','nevermind','fine','sorry','toothache','hungry']
 		new = ['nothing','day','my']
 
 		model_name = {'sentence':'sentence.h5',
@@ -339,7 +342,8 @@ class MainWindow(QMainWindow):
 				elif name =='deny.h5':
 					return new
 
-		deny = ['nothing','me','no','worry','thank-you','miss','nevermind','fine','sorry','toothache','hungry']
+		deny = ['nothing','ฉัน','เข้าใจ','ทาน','ไม่','มี','คำถาม','ไป','โรงเรียน','ไม่เป็นไร','ขอบคุณ']
+		#deny = ['nothing','me','Do-you-understand','eat','no','have','question','go','school','nevermind','thank-you']
 		new = ['nothing','day','my']
 
 		model_name = {'deny':'deny.h5',
