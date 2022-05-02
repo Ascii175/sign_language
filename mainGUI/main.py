@@ -75,6 +75,8 @@ class MainWindow(QMainWindow):
 
 		self.ui.time.clicked.connect(self.time)
 		self.ui.general.clicked.connect(self.general_1662)
+		self.ui.day.clicked.connect(self.day)
+		self.ui.num.clicked.connect(self.number)
 		self.ui.question.clicked.connect(self.quest)
 		self.ui.sentence.clicked.connect(self.sentence)
 		self.ui.deny.clicked.connect(self.deny)
