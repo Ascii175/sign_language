@@ -5,6 +5,8 @@ import sys
 import os
 from typing_extensions import *
 import cv2
+import time
+from time import sleep
 import os
 import asyncio
 from PySide2 import *
@@ -64,7 +66,7 @@ def draw_styled_landmarks(image, results):
                              mp_drawing.DrawingSpec(color=(245,117,66), thickness=2, circle_radius=4), 
                              mp_drawing.DrawingSpec(color=(245,66,230), thickness=2, circle_radius=2)
                              )
-def sentence(self):
+def testcamera():
 	def mediapipe_detection(image, model):
 			image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB) # COLOR CONVERSION BGR 2 RGB
 			image.flags.writeable = False                  # Image is no longer writeable
@@ -84,10 +86,11 @@ def sentence(self):
 
 	def get_action(name):
 			if name == 'thai.h5':
-				return 'thai'
+				return thai
 			elif name =='test.h5':
-				return 'new'
-
+				return new
+			else:
+				return time		
 	thai = ['nothing','korkai','khorkhai','khorkyai','khorrakung','ngorngu','jorjan',
                 'chorching','chorchang','zorzoh','chorcher','yorying','dorchada','torbantak',
                 'thortan','thornanmunto','torputow','nornean','dordek','dhordhow','thorthung',
@@ -147,13 +150,14 @@ def sentence(self):
 				predicted = actions[np.argmax(res)]
 				predictions.append(np.argmax(res))  
 				old_text = predicted
-				if old_text == "nothing":
-					count_same_frame = 0
-				elif old_text == word:
-					count_same_frame += 1			
+				if old_text == word:
+					count_same_frame += 1
+				elif old_text == "nothing" :
+					count_same_frame = 0			
 
 				if predicted == "nothing":
-					if count_same_frame >= 150 :
+					if count_same_frame >= 100 :
+						print("test")
 						text = ''
 				elif count_same_frame > 50:
 					if len(predicted) == 1:
@@ -188,9 +192,7 @@ def sentence(self):
 			#print(word)
 			cv2.rectangle(image, (0,0), (640, 40), (245, 117, 16), -1)
 			cv2.putText(image, word, (3,30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA)  
-
 			
-
 			cv2.imshow('OpenCV Feed', image)              
                 # Break gracefully
 			if cv2.waitKey(10) & 0xFF == ord('q'):
@@ -198,4 +200,10 @@ def sentence(self):
             
 		cap.release()
 		cv2.destroyAllWindows()
+	return word
+
+
+if(__name__=='__main__'):
+    p = mps.Process(target=testcamera)	 
+    p.start()
 	

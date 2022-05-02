@@ -173,10 +173,10 @@ class MainWindow(QMainWindow):
 					predicted = actions[np.argmax(res)]
 					predictions.append(np.argmax(res))  
 					old_text = predicted
-					if old_text == "nothing":
-						count_same_frame = 0
-					elif old_text == word:
-						count_same_frame += 1			
+					if old_text == word:
+						count_same_frame += 1
+					elif old_text == "nothing" :
+						count_same_frame = 0			
 
 					if predicted == "nothing":
 						if count_same_frame >= 150 :
@@ -281,10 +281,10 @@ class MainWindow(QMainWindow):
 					predicted = actions[np.argmax(res)]
 					predictions.append(np.argmax(res))  
 					old_text = predicted
-					if old_text == "nothing":
-						count_same_frame = 0
-					elif old_text == word:
-						count_same_frame += 1			
+					if old_text == word:
+						count_same_frame += 1
+					elif old_text == "nothing" :
+						count_same_frame = 0			
 
 					if predicted == "nothing":
 						if count_same_frame >= 150 :
@@ -388,10 +388,10 @@ class MainWindow(QMainWindow):
 					predicted = actions[np.argmax(res)]
 					predictions.append(np.argmax(res))  
 					old_text = predicted
-					if old_text == "nothing":
-						count_same_frame = 0
-					elif old_text == word:
-						count_same_frame += 1			
+					if old_text == word:
+						count_same_frame += 1
+					elif old_text == "nothing" :
+						count_same_frame = 0			
 
 					if predicted == "nothing":
 						if count_same_frame >= 150 :
@@ -498,10 +498,10 @@ class MainWindow(QMainWindow):
 					predicted = actions[np.argmax(res)]
 					predictions.append(np.argmax(res))  
 					old_text = predicted
-					if old_text == "nothing":
-						count_same_frame = 0
-					elif old_text == word:
-						count_same_frame += 1			
+					if old_text == word:
+						count_same_frame += 1
+					elif old_text == "nothing" :
+						count_same_frame = 0			
 
 					if predicted == "nothing":
 						if count_same_frame >= 150 :
@@ -620,10 +620,10 @@ class MainWindow(QMainWindow):
 					predicted = actions[np.argmax(res)]
 					predictions.append(np.argmax(res))  
 					old_text = predicted
-					if old_text == "nothing":
-						count_same_frame = 0
-					elif old_text == word:
-						count_same_frame += 1			
+					if old_text == word:
+						count_same_frame += 1
+					elif old_text == "nothing" :
+						count_same_frame = 0			
 
 					if predicted == "nothing":
 						if count_same_frame >= 150 :
@@ -728,10 +728,10 @@ class MainWindow(QMainWindow):
 					predicted = actions[np.argmax(res)]
 					predictions.append(np.argmax(res))  
 					old_text = predicted
-					if old_text == "nothing":
-						count_same_frame = 0
-					elif old_text == word:
-						count_same_frame += 1			
+					if old_text == word:
+						count_same_frame += 1
+					elif old_text == "nothing" :
+						count_same_frame = 0			
 
 					if predicted == "nothing":
 						if count_same_frame >= 150 :
@@ -832,17 +832,18 @@ class MainWindow(QMainWindow):
 					predicted = actions[np.argmax(res)]
 					predictions.append(np.argmax(res))  
 					old_text = predicted
-					if old_text == "nothing":
-						count_same_frame = 0
-					elif old_text == word:
-						count_same_frame += 1	
-						print(word)		
+					if old_text == word:
+						count_same_frame += 1
+					elif old_text == "nothing" :
+						count_same_frame = 0	
+							
 
 					if predicted == "nothing":
-						if count_same_frame >= 150 :
+						if count_same_frame > 100 :	
+							print("nothing")					
 							text = ''
-							self.ui.textBrowser.append("") 
-					elif count_same_frame >= 50:
+							self.ui.textBrowser.append(text) 
+					elif count_same_frame > 50:
 						if len(predicted) == 1:
 							Thread(args=(predicted, )).start()
 						text = text + ' ' + predicted
@@ -851,6 +852,18 @@ class MainWindow(QMainWindow):
 						self.ui.textBrowser.append(text) 
 						print(text)					
 						count_same_frame = 0
+
+					if np.unique(predictions[-30:])[0]==np.argmax(res): 
+						if res[np.argmax(res)] > threshold: 
+							
+							if len(sentence) > 0: 
+								if actions[np.argmax(res)] != sentence[-1]:
+									sentence.append(actions[np.argmax(res)])
+							else:
+								sentence.append(actions[np.argmax(res)])
+							
+					if len(sentence) > 5: 
+						sentence = sentence[-5:] 
 					image = prob_viz(res, actions, image, colors) 
 				word = predicted
 				
