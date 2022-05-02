@@ -11,7 +11,7 @@ import time
 import mediapipe as mp
 from ui_untitled import *
 from threading import Thread
-from PyQt5.QtWidgets import QApplication,QMainWindow,QPushButton,QLabel,QFileDialog
+from PyQt5.QtWidgets import QApplication
 from PyQt5.QtWidgets import QWidget
 from PyQt5.QtGui import QImage
 from PyQt5.QtGui import QPixmap
@@ -90,7 +90,6 @@ class MainWindow(QMainWindow):
 		return 0
 	def showpic(self):
 		img = cv2.imread("./A_Z.png")
-		self.ui.image_label.append()
 		cv2.imshow("A-Z",img)
 		cv2.waitKey(0)
 		cv2.destroyAllWindows()
@@ -811,16 +810,12 @@ class MainWindow(QMainWindow):
 		text = ""
 		count_same_frame = 0
 		keypress = cv2.waitKey(1)
-		wCam, hCam = 1280,720
-		cap = cv2.VideoCapture(0)
-		cap.set(3, wCam)
-		cap.set(4, hCam)
+		cap = cv2.VideoCapture(0)	
 			# Set mediapipe model 
 		with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=0.5) as holistic:
 			while cap.isOpened():
 					# Read feed
 				ret, frame = cap.read()
-				old_text = predicted
 					# Make detections
 				image, results = mediapipe_detection(frame, holistic)
 				#print(results)
@@ -840,24 +835,25 @@ class MainWindow(QMainWindow):
 					if old_text == "nothing":
 						count_same_frame = 0
 					elif old_text == word:
-						count_same_frame += 1			
+						count_same_frame += 1	
+						print(word)		
 
 					if predicted == "nothing":
 						if count_same_frame >= 150 :
 							text = ''
-					elif count_same_frame > 50:
+							self.ui.textBrowser.append("") 
+					elif count_same_frame >= 50:
 						if len(predicted) == 1:
 							Thread(args=(predicted, )).start()
-						
 						text = text + ' ' + predicted
 						tts = gTTS(text, lang='th')
 						tts.save('speech.mp3')
 						self.ui.textBrowser.append(text) 
-						print(text)
-											
+						print(text)					
 						count_same_frame = 0
 					image = prob_viz(res, actions, image, colors) 
 				word = predicted
+				
 				#print(word)
 				cv2.rectangle(image, (0,0), (640, 40), (245, 117, 16), -1)
 				cv2.putText(image, word, (3,30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA)  
