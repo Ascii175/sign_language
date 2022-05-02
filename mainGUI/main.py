@@ -11,7 +11,7 @@ import time
 import mediapipe as mp
 from ui_untitled import *
 from threading import Thread
-from PyQt5.QtWidgets import QApplication
+from PyQt5.QtWidgets import QApplication,QMainWindow,QPushButton,QLabel,QFileDialog
 from PyQt5.QtWidgets import QWidget
 from PyQt5.QtGui import QImage
 from PyQt5.QtGui import QPixmap
@@ -72,6 +72,7 @@ class MainWindow(QMainWindow):
 
 		self.ui.playSo.clicked.connect(self.playSo)
 		self.ui.mic.clicked.connect(self.microphone)
+		self.ui.showpic.clicked.connect(self.showpic)
 
 		self.ui.time.clicked.connect(self.time)
 		self.ui.general.clicked.connect(self.general_1662)
@@ -87,6 +88,15 @@ class MainWindow(QMainWindow):
 #################################################################################################################################################################
 	def reload(self):
 		return 0
+	def showpic(self):
+		img = cv2.imread("./A_Z.png")
+		self.ui.image_label.append()
+		cv2.imshow("A-Z",img)
+		cv2.waitKey(0)
+		cv2.destroyAllWindows()
+		# fname = QFileDialog.getOpenFileName(self, "Open File", "./A_Z.png","All Files(*);; PNG")
+		# self.pixmap = QPixmap(fname[0])
+		# self.labe
 #################################################################################################################################################################
 	def time(self):
 		def mediapipe_detection(image, model):

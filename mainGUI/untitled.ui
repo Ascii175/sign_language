@@ -206,7 +206,7 @@ QPushButton{
 </string>
                </property>
                <property name="currentIndex">
-                <number>1</number>
+                <number>0</number>
                </property>
                <widget class="QWidget" name="menu1">
                 <property name="geometry">
@@ -1311,6 +1311,9 @@ QPushButton{
             </property>
             <property name="text">
              <string/>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
             </property>
            </widget>
           </item>

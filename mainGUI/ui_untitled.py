@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'untitledkCdUSm.ui'
+## Form generated from reading UI file 'untitledkmBqBi.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -483,6 +483,7 @@ class Ui_MainWindow(object):
         self.image_label = QLabel(self.main_body_conten)
         self.image_label.setObjectName(u"image_label")
         self.image_label.setMinimumSize(QSize(480, 400))
+        self.image_label.setAlignment(Qt.AlignCenter)
 
         self.verticalLayout_11.addWidget(self.image_label)
 
@@ -585,7 +586,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.toolBox.setCurrentIndex(1)
+        self.toolBox.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
