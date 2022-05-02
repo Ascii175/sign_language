@@ -92,7 +92,7 @@ class MainWindow(QMainWindow):
 			try:
 				self.ui.textBrowser.append(recog.recognize_google(audio,None,'th'))
 			except stt.UnknownValueError:
-				print("Google ไม่เข้าใจเสียงที่นำเข้า")
+				print("ไม่เข้าใจเสียงที่นำเข้า")
 			except stt.RequestError as e:
 				print("ไม่สามารถนำข้อมูลมาจากบริการของ Google: {0}".format(e))
 
