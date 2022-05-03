@@ -34,7 +34,7 @@ mp_holistic = mp.solutions.holistic # Holistic model
 mp_drawing = mp.solutions.drawing_utils # Drawing utilities 
 class train():
         score = 0
-        while 1 >= score:
+        while 0.97 >= score:
             def mediapipe_detection(image, model):
                 image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB) # COLOR CONVERSION BGR 2 RGB
                 image.flags.writeable = False                  # Image is no longer writeable
@@ -49,7 +49,7 @@ class train():
                 mp_drawing.draw_landmarks(image, results.right_hand_landmarks, mp_holistic.HAND_CONNECTIONS) # Draw right hand connections
             def draw_styled_landmarks(image, results):
                 # Draw face connections
-                #mp_drawing.draw_landmarks(image, results.face_landmarks, mp_holistic.FACEMESH_TESSELATION, 
+                # mp_drawing.draw_landmarks(image, results.face_landmarks, mp_holistic.FACEMESH_TESSELATION, 
                 #                         mp_drawing.DrawingSpec(color=(80,110,10), thickness=1, circle_radius=1), 
                 #                         mp_drawing.DrawingSpec(color=(80,256,121), thickness=1, circle_radius=1)
                 #                         ) 
@@ -92,8 +92,11 @@ class train():
             # 'hungry','me','mhai','miss','name','nevermind','no','now','or','question',
             # 'rice','school','sorry','thank-you','time','toothache','what','worry','yang','you']
 
-            general  = ['nothing','age','you','how-much','have','question','mhai','Do-you-understand',
-                        'name','what','eat','rice','or','yang','now','time','fine']
+            #general  = ['nothing','you','age','how-much','have','question','mhai','Do-you-understand','name','what','eat','rice','or','yang','now','time','fine']
+
+            #general  = ['nothing','me','no','worry','thank-you','miss','nevermind','fine','sorry','toothache','hungry']
+            # general  = ['test','me','Do-you-understand','eat','no','have','question','go','school','nevermind','thank-you']
+            general  = ['test','me','Do-you-understand','eat','no']
             actions = np.array(general)
             # Thirty videos worth of data
             no_sequences = 20
@@ -134,15 +137,15 @@ class train():
             history = model.fit(X_train, y_train, epochs=300, validation_data=(X_test,y_test))
             model.summary()
             res = model.predict(X_test)
-            model.save('question.h5')
+            model.save('test.h5')
             yhat = model.predict(X_test)
             ytrue = np.argmax(y_test, axis=1).tolist()
             yhat = np.argmax(yhat, axis=1).tolist()
             multilabel_confusion_matrix(ytrue, yhat)
             score = accuracy_score(ytrue, yhat)
             print("accuracy",score)
-            if score < 1 :
+            if score < 1.0 :
                     print("FAIL")
-            else :
+            elif cv2.waitKey(10) & 0xFF == ord('q'):
                     print("SUCCESS")
                     break

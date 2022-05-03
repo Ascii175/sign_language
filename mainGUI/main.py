@@ -393,8 +393,8 @@ class MainWindow(QMainWindow):
 					elif old_text == "nothing" :
 						count_same_frame = 0			
 
-					if predicted == "nothing":
-						if count_same_frame >= 150 :
+					if predicted == "nothing" :
+						if count_same_frame >= 150 or cv2.waitKey(10) & 0xFF == ord('c') :
 							text = ''
 					elif count_same_frame > 50:
 						if len(predicted) == 1:
@@ -843,6 +843,7 @@ class MainWindow(QMainWindow):
 							print("nothing")					
 							text = ''
 							self.ui.textBrowser.append(text) 
+							count_same_frame = 0
 					elif count_same_frame > 50:
 						if len(predicted) == 1:
 							Thread(args=(predicted, )).start()
@@ -866,8 +867,7 @@ class MainWindow(QMainWindow):
 						sentence = sentence[-5:] 
 					image = prob_viz(res, actions, image, colors) 
 				word = predicted
-				
-				#print(word)
+				print(word)
 				cv2.rectangle(image, (0,0), (640, 40), (245, 117, 16), -1)
 				cv2.putText(image, word, (3,30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA)  
 				cv2.imshow('OpenCV Feed', image)  		

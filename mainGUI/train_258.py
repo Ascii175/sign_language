@@ -34,7 +34,7 @@ mp_holistic = mp.solutions.holistic # Holistic model
 mp_drawing = mp.solutions.drawing_utils # Drawing utilities 
 class train():
         score = 0
-        while 0.97 >= score:
+        while 1.0 >= score:
             def mediapipe_detection(image, model):
                 image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB) # COLOR CONVERSION BGR 2 RGB
                 image.flags.writeable = False                  # Image is no longer writeable
@@ -92,10 +92,12 @@ class train():
             # 'hungry','me','mhai','miss','name','nevermind','no','now','or','question',
             # 'rice','school','sorry','thank-you','time','toothache','what','worry','yang','you']
 
-            #general  = ['nothing','you','age','how-much','have','question','mhai','Do-you-understand','name','what','eat','rice','or','yang','now','time','fine']
+            # general  = ['nothing','you','age','how-much','have','question','mhai','Do-you-understand','name','what','eat','rice','or','yang','now','time','fine']
+            
+            #sentence
+            general  = ['nothing','me','no','worry','thank-you','miss','nevermind','fine','sorry','toothache','hungry']
 
-            #general  = ['nothing','me','no','worry','thank-you','miss','nevermind','fine','sorry','toothache','hungry']
-            general  = ['nothing','me','Do-you-understand','eat','no','have','question','go','school','nevermind','thank-you']
+            #general  = ['nothing','me','Do-you-understand','eat','no','have','question','go','school','nevermind','thank-you']
             actions = np.array(general)
             # Thirty videos worth of data
             no_sequences = 20
@@ -136,7 +138,7 @@ class train():
             history = model.fit(X_train, y_train, epochs=300, validation_data=(X_test,y_test))
             model.summary()
             res = model.predict(X_test)
-            model.save('deny.h5')
+            model.save('sentence.h5')
             yhat = model.predict(X_test)
             ytrue = np.argmax(y_test, axis=1).tolist()
             yhat = np.argmax(yhat, axis=1).tolist()
@@ -145,6 +147,6 @@ class train():
             print("accuracy",score)
             if score < 1.0 :
                     print("FAIL")
-            else :
+            else:
                     print("SUCCESS")
                     break
