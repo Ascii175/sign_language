@@ -75,7 +75,7 @@ class train():
                 rh = np.array([[res.x, res.y, res.z] for res in results.right_hand_landmarks.landmark]).flatten() if results.right_hand_landmarks else np.zeros(21*3)
                 return np.concatenate([pose, lh, rh])
             # Path for exported data, numpy arrays
-            DATA_PATH = os.path.join('MP_Data') 
+            DATA_PATH = os.path.join('MP_Data_2') 
 
             # Actions that we try to detect
             # ADD ACTION HERE 
@@ -88,14 +88,18 @@ class train():
             #actions = np.array(['1000000'])
 
             # adjust ก 
+            general = ['nothing','name','lastname','me','you','fun','yes','no','sorry','good-luck','howmuch',
+                        'dislike','Beautiful','remember','age','what-is-your-name','fine','sick']
+            #ประโยค           
             # general  = ['nothing','age','Do-you-understand','eat','fine','go','have','how-much',
-            # 'hungry','me','mhai','miss','name','nevermind','no','now','or','question',
-            # 'rice','school','sorry','thank-you','time','toothache','what','worry','yang','you']
+            # # 'hungry','me','mhai','miss','name','nevermind','no','now','or','question',
+            # # 'rice','school','sorry','thank-you','time','toothache','what','worry','yang','you']
+
 
             # general  = ['nothing','you','age','how-much','have','question','mhai','Do-you-understand','name','what','eat','rice','or','yang','now','time','fine']
             
             #sentence
-            general  = ['nothing','me','no','worry','thank-you','miss','nevermind','fine','sorry','toothache','hungry']
+            # general  = ['nothing','me','no','worry','thank-you','miss','nevermind','fine','sorry','toothache','hungry']
 
             #general  = ['nothing','me','Do-you-understand','eat','no','have','question','go','school','nevermind','thank-you']
             actions = np.array(general)
@@ -138,7 +142,7 @@ class train():
             history = model.fit(X_train, y_train, epochs=300, validation_data=(X_test,y_test))
             model.summary()
             res = model.predict(X_test)
-            model.save('sentence.h5')
+            model.save('general.h5')
             yhat = model.predict(X_test)
             ytrue = np.argmax(y_test, axis=1).tolist()
             yhat = np.argmax(yhat, axis=1).tolist()

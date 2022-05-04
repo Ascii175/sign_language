@@ -197,7 +197,7 @@ class MainWindow(QMainWindow):
                     'number': 'number.h5',
 					'new' : 'test.h5'}
 		new = ['nothing','day','my']
-		name = model_name['thai']   
+		name = model_name['number']   
 		actions = np.array(get_action(name))
 		model = tf.keras.models.load_model(name)
 		colors=[]

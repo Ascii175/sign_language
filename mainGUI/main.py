@@ -147,10 +147,7 @@ class MainWindow(QMainWindow):
 		text = ""
 		count_same_frame = 0
 		keypress = cv2.waitKey(1)
-		wCam, hCam = 1280,720
 		cap = cv2.VideoCapture(0)
-		cap.set(3, wCam)
-		cap.set(4, hCam)
 			# Set mediapipe model 
 		with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=0.5) as holistic:
 			while cap.isOpened():
@@ -184,8 +181,7 @@ class MainWindow(QMainWindow):
 					elif count_same_frame > 50:
 						if len(predicted) == 1:
 							Thread(args=(predicted, )).start()
-						
-						text = text + ' ' + predicted
+						text = predicted
 						tts = gTTS(text, lang='th')
 						tts.save('speech.mp3')
 						self.ui.textBrowser.append(text) 
@@ -255,10 +251,7 @@ class MainWindow(QMainWindow):
 		text = ""
 		count_same_frame = 0
 		keypress = cv2.waitKey(1)
-		wCam, hCam = 1280,720
 		cap = cv2.VideoCapture(0)
-		cap.set(3, wCam)
-		cap.set(4, hCam)
 			# Set mediapipe model 
 		with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=0.5) as holistic:
 			while cap.isOpened():
@@ -293,7 +286,7 @@ class MainWindow(QMainWindow):
 						if len(predicted) == 1:
 							Thread(args=(predicted, )).start()
 						
-						text = text + ' ' + predicted
+						text = predicted
 						tts = gTTS(text, lang='th')
 						tts.save('speech.mp3')
 						self.ui.textBrowser.append(text) 
@@ -312,7 +305,7 @@ class MainWindow(QMainWindow):
 			cap.release()
 			cv2.destroyAllWindows()
 #################################################################################################################################################################
-	def day(self):##########
+	def day(self):
 		def mediapipe_detection(image, model):
 				image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB) # COLOR CONVERSION BGR 2 RGB
 				image.flags.writeable = False                  # Image is no longer writeable
@@ -362,10 +355,7 @@ class MainWindow(QMainWindow):
 		text = ""
 		count_same_frame = 0
 		keypress = cv2.waitKey(1)
-		wCam, hCam = 1280,720
 		cap = cv2.VideoCapture(0)
-		cap.set(3, wCam)
-		cap.set(4, hCam)
 			# Set mediapipe model 
 		with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=0.5) as holistic:
 			while cap.isOpened():
@@ -400,7 +390,7 @@ class MainWindow(QMainWindow):
 						if len(predicted) == 1:
 							Thread(args=(predicted, )).start()
 						
-						text = text + ' ' + predicted
+						text = predicted
 						tts = gTTS(text, lang='th')
 						tts.save('speech.mp3')
 						self.ui.textBrowser.append(text) 
@@ -510,7 +500,7 @@ class MainWindow(QMainWindow):
 						if len(predicted) == 1:
 							Thread(args=(predicted, )).start()
 						
-						text = text + ' ' + predicted
+						text = predicted
 						tts = gTTS(text, lang='th')
 						tts.save('speech.mp3')
 						self.ui.textBrowser.append(text) 
@@ -594,10 +584,7 @@ class MainWindow(QMainWindow):
 		text = ""
 		count_same_frame = 0
 		keypress = cv2.waitKey(1)
-		wCam, hCam = 1280,720
 		cap = cv2.VideoCapture(0)
-		cap.set(3, wCam)
-		cap.set(4, hCam)
 			# Set mediapipe model 
 		with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=0.5) as holistic:
 			while cap.isOpened():
@@ -701,11 +688,8 @@ class MainWindow(QMainWindow):
 		predicted = ''
 		text = ""
 		count_same_frame = 0
-		keypress = cv2.waitKey(1)
-		wCam, hCam = 1280,720
+		keypress = cv2.waitKey(1)	
 		cap = cv2.VideoCapture(0)
-		cap.set(3, wCam)
-		cap.set(4, hCam)
 			# Set mediapipe model 
 		with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=0.5) as holistic:
 			while cap.isOpened():
