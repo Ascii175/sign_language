@@ -615,23 +615,44 @@ class MainWindow(QMainWindow):
 						count_same_frame += 1
 					elif old_text == "nothing" :
 						count_same_frame = 0			
-
-					if predicted == "nothing":
-						if count_same_frame >= 150 :
+							
+					if predicted == "nothing" or cv2.waitKey(10) & 0xFF == ord('c'):
+						if count_same_frame > 150 :
 							text = ''
+							self.ui.textBrowser.append(text) 
+							count_same_frame = 0
+							self.ui.textBrowser.append(text) 
+							count_same_frame = 0
+					elif cv2.waitKey(10) & 0xFF == ord('c') : 
+						print("not")					
+						text = ''
+						self.ui.textBrowser.append(text) 
+						count_same_frame = 0
+						self.ui.textBrowser.append(text) 
+						count_same_frame = 0
 					elif count_same_frame > 50:
 						if len(predicted) == 1:
 							Thread(args=(predicted, )).start()
-
 						text = text + ' ' + predicted
 						tts = gTTS(text, lang='th')
 						tts.save('speech.mp3')
 						self.ui.textBrowser.append(text) 
 						print(text)						
 						count_same_frame = 0
+					if np.unique(predictions[-30:])[0]==np.argmax(res): 
+						if res[np.argmax(res)] > threshold: 
+							
+							if len(sentence) > 0: 
+								if actions[np.argmax(res)] != sentence[-1]:
+									sentence.append(actions[np.argmax(res)])
+							else:
+								sentence.append(actions[np.argmax(res)])
+							
+					if len(sentence) > 5: 
+						sentence = sentence[-5:] 
 					image = prob_viz(res, actions, image, colors) 
 				word = predicted
-				#print(word)
+				print(word)
 				cv2.rectangle(image, (0,0), (640, 40), (245, 117, 16), -1)
 				cv2.putText(image, word, (3,30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA)  
 				cv2.imshow('OpenCV Feed', image)  
@@ -720,20 +741,38 @@ class MainWindow(QMainWindow):
 					elif old_text == "nothing" :
 						count_same_frame = 0			
 
-					if predicted == "nothing":
-						if count_same_frame >= 150 :
+					if predicted == "nothing" or cv2.waitKey(10) & 0xFF == ord('c'):
+						if count_same_frame > 100 :
 							text = ''
+							self.ui.textBrowser.append(text) 
+							count_same_frame = 0
+					elif cv2.waitKey(10) & 0xFF == ord('c') : 
+						print("not")					
+						text = ''
+						self.ui.textBrowser.append(text) 
+						count_same_frame = 0
+						self.ui.textBrowser.append(text) 
+						count_same_frame = 0
 					elif count_same_frame > 50:
 						if len(predicted) == 1:
-							Thread(args=(predicted, )).start()
-						
+							Thread(args=(predicted, )).start()						
 						text = text + ' ' + predicted
 						tts = gTTS(text, lang='th')
 						tts.save('speech.mp3')
 						self.ui.textBrowser.append(text) 
-						print(text)
-											
+						print(text)				
 						count_same_frame = 0
+					if np.unique(predictions[-30:])[0]==np.argmax(res): 
+						if res[np.argmax(res)] > threshold: 
+							
+							if len(sentence) > 0: 
+								if actions[np.argmax(res)] != sentence[-1]:
+									sentence.append(actions[np.argmax(res)])
+							else:
+								sentence.append(actions[np.argmax(res)])
+							
+					if len(sentence) > 5: 
+						sentence = sentence[-5:] 
 					image = prob_viz(res, actions, image, colors) 
 				word = predicted
 				#print(word)
@@ -770,7 +809,7 @@ class MainWindow(QMainWindow):
 				elif name =='deny.h5':
 					return new
 
-		deny = ['nothing','ฉัน','เข้าใจ','ทาน','ไม่','มี','คำถาม','ไป','โรงเรียน','ไม่เป็นไร','ขอบคุณ']
+		deny = ['nothing','ฉัน','ไม่เข้าใจ','ทาน','ไม่','มี','คำถาม','ไป','โรงเรียน','ไม่เป็นไร','ขอบคุณ']
 		#deny = ['nothing','me','Do-you-understand','eat','no','have','question','go','school','nevermind','thank-you']
 		new = ['nothing','day','my']
 
@@ -825,12 +864,22 @@ class MainWindow(QMainWindow):
 						count_same_frame = 0	
 							
 
-					if predicted == "nothing":
+					if predicted == "nothing" or  cv2.waitKey(10) & 0xFF == ord('c'):
 						if count_same_frame > 100 :	
-							print("nothing")					
+							print("not")					
 							text = ''
 							self.ui.textBrowser.append(text) 
 							count_same_frame = 0
+							self.ui.textBrowser.append(text) 
+							count_same_frame = 0
+					elif cv2.waitKey(10) & 0xFF == ord('c') : 
+						print("not")					
+						text = ''
+						self.ui.textBrowser.append(text) 
+						count_same_frame = 0
+						self.ui.textBrowser.append(text) 
+						count_same_frame = 0
+
 					elif count_same_frame > 50:
 						if len(predicted) == 1:
 							Thread(args=(predicted, )).start()
