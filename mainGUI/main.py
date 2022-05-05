@@ -289,9 +289,19 @@ class MainWindow(QMainWindow):
 						tts = gTTS(text, lang='th')
 						tts.save('speech.mp3')
 						self.ui.textBrowser.append(text) 
-						print(text)
-											
+						print(text)			
 						count_same_frame = 0
+					if np.unique(predictions[-30:])[0]==np.argmax(res): 
+						if res[np.argmax(res)] > threshold: 
+							
+							if len(sentence) > 0: 
+								if actions[np.argmax(res)] != sentence[-1]:
+									sentence.append(actions[np.argmax(res)])
+							else:
+								sentence.append(actions[np.argmax(res)])
+							
+					if len(sentence) > 5: 
+						sentence = sentence[-5:] 
 					image = prob_viz(res, actions, image, colors) 
 				word = predicted
 				#print(word)
@@ -393,9 +403,19 @@ class MainWindow(QMainWindow):
 						tts = gTTS(text, lang='th')
 						tts.save('speech.mp3')
 						self.ui.textBrowser.append(text) 
-						print(text)
-											
+						print(text)				
 						count_same_frame = 0
+					if np.unique(predictions[-30:])[0]==np.argmax(res): 
+						if res[np.argmax(res)] > threshold: 
+							
+							if len(sentence) > 0: 
+								if actions[np.argmax(res)] != sentence[-1]:
+									sentence.append(actions[np.argmax(res)])
+							else:
+								sentence.append(actions[np.argmax(res)])
+							
+					if len(sentence) > 5: 
+						sentence = sentence[-5:] 
 					image = prob_viz(res, actions, image, colors) 
 				word = predicted
 				#print(word)
