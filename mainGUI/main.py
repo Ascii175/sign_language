@@ -223,7 +223,7 @@ class MainWindow(QMainWindow):
 				elif name =='general.h5':
 					return new
 
-		general = ['name','lastname','me','you','fun','yes','no','sorry','good-luck','howmuch','dislike','Beautiful','remember','age','what-is-your-name','fine','sick']
+		general = ['nothing','name','lastname','me','you','cute','fun','remember','yes','no','sick','age','same','sorry','fine','how-much','good-luck','hello','like','dislike','beautiful']
 		#question = ['nothing','you','age','how-much','have','question','mhai','Do-you-understand',
 		#			'name','what','eat','rice','or','yang','now','time','fine']
 		new = ['nothing','day','my']
