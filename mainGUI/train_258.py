@@ -75,7 +75,7 @@ class train():
                 rh = np.array([[res.x, res.y, res.z] for res in results.right_hand_landmarks.landmark]).flatten() if results.right_hand_landmarks else np.zeros(21*3)
                 return np.concatenate([pose, lh, rh])
             # Path for exported data, numpy arrays
-            DATA_PATH = os.path.join('MP_Data_2') 
+            DATA_PATH = os.path.join('general1') 
 
             # Actions that we try to detect
             # ADD ACTION HERE 
@@ -88,8 +88,8 @@ class train():
             #actions = np.array(['1000000'])
 
             # adjust ก 
-            general = ['nothing','name','lastname','me','you','fun','yes','no','sorry','good-luck','howmuch',
-                        'dislike','Beautiful','remember','age','what-is-your-name','fine','sick']
+
+            general = ['nothing','name','lastname','me','you','cute','fun','remember','yes','no','sick','age','same','sorry','fine','how-much','good-luck','hello','like','dislike','beautiful']           
             #ประโยค           
             # general  = ['nothing','age','Do-you-understand','eat','fine','go','have','how-much',
             # # 'hungry','me','mhai','miss','name','nevermind','no','now','or','question',
