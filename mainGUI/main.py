@@ -75,7 +75,7 @@ class MainWindow(QMainWindow):
 		self.ui.showpic.clicked.connect(self.showpic)
 
 		self.ui.time.clicked.connect(self.time)
-		self.ui.general.clicked.connect(self.general_1662)
+		self.ui.general.clicked.connect(self.general)
 		self.ui.day.clicked.connect(self.day)
 		self.ui.num.clicked.connect(self.number)
 		self.ui.question.clicked.connect(self.quest)
@@ -199,7 +199,7 @@ class MainWindow(QMainWindow):
 			cap.release()
 			cv2.destroyAllWindows()
 ##############################################################################################################################################################
-	def general_1662(self):
+	def general(self):
 		def mediapipe_detection(image, model):
 				image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB) # COLOR CONVERSION BGR 2 RGB
 				image.flags.writeable = False                  # Image is no longer writeable
