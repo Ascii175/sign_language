@@ -342,7 +342,6 @@ class MainWindow(QMainWindow):
 					self.ui.textBrowser.append("ภ")
 				elif word == "morma":
 					self.ui.textBrowser.append("ม")
-					self.ui.microphone.clicked.connect(lambda: playsound('./speech.mp3'))
 				elif word == "yoryak":
 					self.ui.textBrowser.append("ย")
 				elif word == "rorruea":

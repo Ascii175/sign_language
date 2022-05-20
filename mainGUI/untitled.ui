@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>895</width>
-    <height>634</height>
+    <width>891</width>
+    <height>706</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -172,7 +172,7 @@ QPushButton{
             <property name="frameShadow">
              <enum>QFrame::Raised</enum>
             </property>
-            <layout class="QVBoxLayout" name="verticalLayout_4" stretch="0,0,0,0">
+            <layout class="QVBoxLayout" name="verticalLayout_4" stretch="0">
              <property name="spacing">
               <number>9</number>
              </property>
@@ -206,15 +206,15 @@ QPushButton{
 </string>
                </property>
                <property name="currentIndex">
-                <number>0</number>
+                <number>1</number>
                </property>
                <widget class="QWidget" name="menu1">
                 <property name="geometry">
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>230</width>
-                  <height>250</height>
+                  <width>258</width>
+                  <height>534</height>
                  </rect>
                 </property>
                 <property name="styleSheet">
@@ -253,6 +253,56 @@ QPushButton{
                     <enum>QFrame::Raised</enum>
                    </property>
                    <layout class="QVBoxLayout" name="verticalLayout_6">
+                    <item>
+                     <widget class="QPushButton" name="thai">
+                      <property name="font">
+                       <font>
+                        <family>TH Mali Grade 6</family>
+                        <pointsize>16</pointsize>
+                        <weight>75</weight>
+                        <bold>true</bold>
+                       </font>
+                      </property>
+                      <property name="text">
+                       <string>หมวดอักษรภาษาไทย</string>
+                      </property>
+                      <property name="icon">
+                       <iconset resource="icons.qrc">
+                        <normaloff>:/icons/icons/camera.svg</normaloff>:/icons/icons/camera.svg</iconset>
+                      </property>
+                      <property name="iconSize">
+                       <size>
+                        <width>32</width>
+                        <height>32</height>
+                       </size>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QPushButton" name="eng">
+                      <property name="font">
+                       <font>
+                        <family>TH Mali Grade 6</family>
+                        <pointsize>16</pointsize>
+                        <weight>75</weight>
+                        <bold>true</bold>
+                       </font>
+                      </property>
+                      <property name="text">
+                       <string>หมวดอักษรภาษาอังกฤษ</string>
+                      </property>
+                      <property name="icon">
+                       <iconset resource="icons.qrc">
+                        <normaloff>:/icons/icons/camera.svg</normaloff>:/icons/icons/camera.svg</iconset>
+                      </property>
+                      <property name="iconSize">
+                       <size>
+                        <width>32</width>
+                        <height>32</height>
+                       </size>
+                      </property>
+                     </widget>
+                    </item>
                     <item alignment="Qt::AlignBottom">
                      <widget class="QPushButton" name="time">
                       <property name="maximumSize">
@@ -386,6 +436,81 @@ QPushButton{
                       </property>
                      </widget>
                     </item>
+                    <item>
+                     <widget class="QPushButton" name="deny">
+                      <property name="font">
+                       <font>
+                        <family>TH Mali Grade 6</family>
+                        <pointsize>16</pointsize>
+                        <weight>75</weight>
+                        <bold>true</bold>
+                       </font>
+                      </property>
+                      <property name="text">
+                       <string>หมวดประโยคปฎิเสธ</string>
+                      </property>
+                      <property name="icon">
+                       <iconset resource="icons.qrc">
+                        <normaloff>:/icons/icons/github.svg</normaloff>:/icons/icons/github.svg</iconset>
+                      </property>
+                      <property name="iconSize">
+                       <size>
+                        <width>32</width>
+                        <height>32</height>
+                       </size>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QPushButton" name="question">
+                      <property name="font">
+                       <font>
+                        <family>TH Mali Grade 6</family>
+                        <pointsize>16</pointsize>
+                        <weight>75</weight>
+                        <bold>true</bold>
+                       </font>
+                      </property>
+                      <property name="text">
+                       <string>หมวดประโยคคำถาม</string>
+                      </property>
+                      <property name="icon">
+                       <iconset resource="icons.qrc">
+                        <normaloff>:/icons/icons/thumbs-up.svg</normaloff>:/icons/icons/thumbs-up.svg</iconset>
+                      </property>
+                      <property name="iconSize">
+                       <size>
+                        <width>32</width>
+                        <height>32</height>
+                       </size>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QPushButton" name="sentence">
+                      <property name="font">
+                       <font>
+                        <family>TH Mali Grade 6</family>
+                        <pointsize>16</pointsize>
+                        <weight>75</weight>
+                        <bold>true</bold>
+                       </font>
+                      </property>
+                      <property name="text">
+                       <string>หมวดประโยคทั่วไป</string>
+                      </property>
+                      <property name="icon">
+                       <iconset resource="icons.qrc">
+                        <normaloff>:/icons/icons/user-check.svg</normaloff>:/icons/icons/user-check.svg</iconset>
+                      </property>
+                      <property name="iconSize">
+                       <size>
+                        <width>32</width>
+                        <height>32</height>
+                       </size>
+                      </property>
+                     </widget>
+                    </item>
                    </layout>
                   </widget>
                  </item>
@@ -396,8 +521,8 @@ QPushButton{
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>230</width>
-                  <height>250</height>
+                  <width>279</width>
+                  <height>477</height>
                  </rect>
                 </property>
                 <attribute name="icon">
@@ -405,7 +530,7 @@ QPushButton{
                   <normaloff>:/icons/icons/chevron-down.svg</normaloff>:/icons/icons/chevron-down.svg</iconset>
                 </attribute>
                 <attribute name="label">
-                 <string>หมวดประโยค</string>
+                 <string>รูปภาพตัวอย่าง</string>
                 </attribute>
                 <layout class="QVBoxLayout" name="verticalLayout_7">
                  <property name="spacing">
@@ -642,22 +767,22 @@ QPushButton{
                     <property name="topMargin">
                      <number>9</number>
                     </property>
-                    <item alignment="Qt::AlignLeft">
-                     <widget class="QPushButton" name="deny">
+                    <item>
+                     <widget class="QPushButton" name="th_img">
                       <property name="font">
                        <font>
                         <family>TH Mali Grade 6</family>
-                        <pointsize>16</pointsize>
+                        <pointsize>22</pointsize>
                         <weight>75</weight>
                         <bold>true</bold>
                        </font>
                       </property>
                       <property name="text">
-                       <string>หมวดประโยคปฎิเสธ</string>
+                       <string>ภาษาไทย</string>
                       </property>
                       <property name="icon">
                        <iconset resource="icons.qrc">
-                        <normaloff>:/icons/icons/github.svg</normaloff>:/icons/icons/github.svg</iconset>
+                        <normaloff>:/icons/icons/edit-2.svg</normaloff>:/icons/icons/edit-2.svg</iconset>
                       </property>
                       <property name="iconSize">
                        <size>
@@ -667,8 +792,8 @@ QPushButton{
                       </property>
                      </widget>
                     </item>
-                    <item alignment="Qt::AlignLeft">
-                     <widget class="QPushButton" name="question">
+                    <item>
+                     <widget class="QPushButton" name="eng_img">
                       <property name="font">
                        <font>
                         <family>TH Mali Grade 6</family>
@@ -678,11 +803,11 @@ QPushButton{
                        </font>
                       </property>
                       <property name="text">
-                       <string>หมวดประโยคคำถาม</string>
+                       <string>ตัวอักษรภาษาอังกฤษ </string>
                       </property>
                       <property name="icon">
                        <iconset resource="icons.qrc">
-                        <normaloff>:/icons/icons/thumbs-up.svg</normaloff>:/icons/icons/thumbs-up.svg</iconset>
+                        <normaloff>:/icons/icons/type.svg</normaloff>:/icons/icons/type.svg</iconset>
                       </property>
                       <property name="iconSize">
                        <size>
@@ -692,221 +817,122 @@ QPushButton{
                       </property>
                      </widget>
                     </item>
-                    <item alignment="Qt::AlignLeft">
-                     <widget class="QPushButton" name="sentence">
-                      <property name="palette">
-                       <palette>
-                        <active>
-                         <colorrole role="WindowText">
-                          <brush brushstyle="SolidPattern">
-                           <color alpha="255">
-                            <red>255</red>
-                            <green>255</green>
-                            <blue>255</blue>
-                           </color>
-                          </brush>
-                         </colorrole>
-                         <colorrole role="Button">
-                          <brush brushstyle="SolidPattern">
-                           <color alpha="255">
-                            <red>0</red>
-                            <green>0</green>
-                            <blue>0</blue>
-                           </color>
-                          </brush>
-                         </colorrole>
-                         <colorrole role="Text">
-                          <brush brushstyle="SolidPattern">
-                           <color alpha="255">
-                            <red>255</red>
-                            <green>255</green>
-                            <blue>255</blue>
-                           </color>
-                          </brush>
-                         </colorrole>
-                         <colorrole role="ButtonText">
-                          <brush brushstyle="SolidPattern">
-                           <color alpha="255">
-                            <red>255</red>
-                            <green>255</green>
-                            <blue>255</blue>
-                           </color>
-                          </brush>
-                         </colorrole>
-                         <colorrole role="Base">
-                          <brush brushstyle="SolidPattern">
-                           <color alpha="255">
-                            <red>0</red>
-                            <green>0</green>
-                            <blue>0</blue>
-                           </color>
-                          </brush>
-                         </colorrole>
-                         <colorrole role="Window">
-                          <brush brushstyle="SolidPattern">
-                           <color alpha="255">
-                            <red>0</red>
-                            <green>0</green>
-                            <blue>0</blue>
-                           </color>
-                          </brush>
-                         </colorrole>
-                         <colorrole role="PlaceholderText">
-                          <brush brushstyle="NoBrush">
-                           <color alpha="128">
-                            <red>255</red>
-                            <green>255</green>
-                            <blue>255</blue>
-                           </color>
-                          </brush>
-                         </colorrole>
-                        </active>
-                        <inactive>
-                         <colorrole role="WindowText">
-                          <brush brushstyle="SolidPattern">
-                           <color alpha="255">
-                            <red>255</red>
-                            <green>255</green>
-                            <blue>255</blue>
-                           </color>
-                          </brush>
-                         </colorrole>
-                         <colorrole role="Button">
-                          <brush brushstyle="SolidPattern">
-                           <color alpha="255">
-                            <red>0</red>
-                            <green>0</green>
-                            <blue>0</blue>
-                           </color>
-                          </brush>
-                         </colorrole>
-                         <colorrole role="Text">
-                          <brush brushstyle="SolidPattern">
-                           <color alpha="255">
-                            <red>255</red>
-                            <green>255</green>
-                            <blue>255</blue>
-                           </color>
-                          </brush>
-                         </colorrole>
-                         <colorrole role="ButtonText">
-                          <brush brushstyle="SolidPattern">
-                           <color alpha="255">
-                            <red>255</red>
-                            <green>255</green>
-                            <blue>255</blue>
-                           </color>
-                          </brush>
-                         </colorrole>
-                         <colorrole role="Base">
-                          <brush brushstyle="SolidPattern">
-                           <color alpha="255">
-                            <red>0</red>
-                            <green>0</green>
-                            <blue>0</blue>
-                           </color>
-                          </brush>
-                         </colorrole>
-                         <colorrole role="Window">
-                          <brush brushstyle="SolidPattern">
-                           <color alpha="255">
-                            <red>0</red>
-                            <green>0</green>
-                            <blue>0</blue>
-                           </color>
-                          </brush>
-                         </colorrole>
-                         <colorrole role="PlaceholderText">
-                          <brush brushstyle="NoBrush">
-                           <color alpha="128">
-                            <red>255</red>
-                            <green>255</green>
-                            <blue>255</blue>
-                           </color>
-                          </brush>
-                         </colorrole>
-                        </inactive>
-                        <disabled>
-                         <colorrole role="WindowText">
-                          <brush brushstyle="SolidPattern">
-                           <color alpha="255">
-                            <red>255</red>
-                            <green>255</green>
-                            <blue>255</blue>
-                           </color>
-                          </brush>
-                         </colorrole>
-                         <colorrole role="Button">
-                          <brush brushstyle="SolidPattern">
-                           <color alpha="255">
-                            <red>0</red>
-                            <green>0</green>
-                            <blue>0</blue>
-                           </color>
-                          </brush>
-                         </colorrole>
-                         <colorrole role="Text">
-                          <brush brushstyle="SolidPattern">
-                           <color alpha="255">
-                            <red>255</red>
-                            <green>255</green>
-                            <blue>255</blue>
-                           </color>
-                          </brush>
-                         </colorrole>
-                         <colorrole role="ButtonText">
-                          <brush brushstyle="SolidPattern">
-                           <color alpha="255">
-                            <red>255</red>
-                            <green>255</green>
-                            <blue>255</blue>
-                           </color>
-                          </brush>
-                         </colorrole>
-                         <colorrole role="Base">
-                          <brush brushstyle="SolidPattern">
-                           <color alpha="255">
-                            <red>0</red>
-                            <green>0</green>
-                            <blue>0</blue>
-                           </color>
-                          </brush>
-                         </colorrole>
-                         <colorrole role="Window">
-                          <brush brushstyle="SolidPattern">
-                           <color alpha="255">
-                            <red>0</red>
-                            <green>0</green>
-                            <blue>0</blue>
-                           </color>
-                          </brush>
-                         </colorrole>
-                         <colorrole role="PlaceholderText">
-                          <brush brushstyle="NoBrush">
-                           <color alpha="128">
-                            <red>255</red>
-                            <green>255</green>
-                            <blue>255</blue>
-                           </color>
-                          </brush>
-                         </colorrole>
-                        </disabled>
-                       </palette>
-                      </property>
+                    <item>
+                     <widget class="QPushButton" name="time_img">
                       <property name="font">
                        <font>
                         <family>TH Mali Grade 6</family>
-                        <pointsize>16</pointsize>
+                        <pointsize>22</pointsize>
                         <weight>75</weight>
                         <bold>true</bold>
                        </font>
                       </property>
                       <property name="text">
-                       <string>หมวดประโยคทั่วไป</string>
+                       <string>เวลา</string>
                       </property>
                       <property name="icon">
                        <iconset resource="icons.qrc">
-                        <normaloff>:/icons/icons/user-check.svg</normaloff>:/icons/icons/user-check.svg</iconset>
+                        <normaloff>:/icons/icons/clock.svg</normaloff>:/icons/icons/clock.svg</iconset>
+                      </property>
+                      <property name="iconSize">
+                       <size>
+                        <width>32</width>
+                        <height>32</height>
+                       </size>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QPushButton" name="num1">
+                      <property name="font">
+                       <font>
+                        <family>TH Mali Grade 6</family>
+                        <pointsize>22</pointsize>
+                        <weight>75</weight>
+                        <bold>true</bold>
+                       </font>
+                      </property>
+                      <property name="text">
+                       <string>ตัวเลข 1</string>
+                      </property>
+                      <property name="icon">
+                       <iconset resource="icons.qrc">
+                        <normaloff>:/icons/icons/italic.svg</normaloff>:/icons/icons/italic.svg</iconset>
+                      </property>
+                      <property name="iconSize">
+                       <size>
+                        <width>32</width>
+                        <height>32</height>
+                       </size>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QPushButton" name="num2">
+                      <property name="font">
+                       <font>
+                        <family>TH Mali Grade 6</family>
+                        <pointsize>22</pointsize>
+                        <weight>75</weight>
+                        <bold>true</bold>
+                       </font>
+                      </property>
+                      <property name="text">
+                       <string>ตัวเลข 2</string>
+                      </property>
+                      <property name="icon">
+                       <iconset resource="icons.qrc">
+                        <normaloff>:/icons/icons/italic.svg</normaloff>:/icons/icons/italic.svg</iconset>
+                      </property>
+                      <property name="iconSize">
+                       <size>
+                        <width>32</width>
+                        <height>32</height>
+                       </size>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QPushButton" name="day_img">
+                      <property name="font">
+                       <font>
+                        <family>TH Mali Grade 6</family>
+                        <pointsize>22</pointsize>
+                        <weight>75</weight>
+                        <bold>true</bold>
+                       </font>
+                      </property>
+                      <property name="text">
+                       <string>วัน เดือน ปี</string>
+                      </property>
+                      <property name="icon">
+                       <iconset resource="icons.qrc">
+                        <normaloff>:/icons/icons/calendar.svg</normaloff>:/icons/icons/calendar.svg</iconset>
+                      </property>
+                      <property name="iconSize">
+                       <size>
+                        <width>32</width>
+                        <height>32</height>
+                       </size>
+                      </property>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QPushButton" name="gen_img">
+                      <property name="font">
+                       <font>
+                        <family>TH Mali Grade 6</family>
+                        <pointsize>22</pointsize>
+                        <weight>75</weight>
+                        <bold>true</bold>
+                       </font>
+                      </property>
+                      <property name="text">
+                       <string>คำทั่วไป</string>
+                      </property>
+                      <property name="icon">
+                       <iconset resource="icons.qrc">
+                        <normaloff>:/icons/icons/user.svg</normaloff>:/icons/icons/user.svg</iconset>
                       </property>
                       <property name="iconSize">
                        <size>
@@ -921,91 +947,6 @@ QPushButton{
                  </item>
                 </layout>
                </widget>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="showpic">
-               <property name="font">
-                <font>
-                 <family>TH Mali Grade 6</family>
-                 <pointsize>22</pointsize>
-                 <weight>75</weight>
-                 <bold>true</bold>
-                </font>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">background-color: rgb(0, 0, 0);</string>
-               </property>
-               <property name="text">
-                <string>Picture</string>
-               </property>
-               <property name="icon">
-                <iconset resource="icons.qrc">
-                 <normaloff>:/icons/icons/book.svg</normaloff>:/icons/icons/book.svg</iconset>
-               </property>
-               <property name="iconSize">
-                <size>
-                 <width>32</width>
-                 <height>32</height>
-                </size>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="train2">
-               <property name="font">
-                <font>
-                 <family>TH Mali Grade 6</family>
-                 <pointsize>22</pointsize>
-                 <weight>75</weight>
-                 <bold>true</bold>
-                </font>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">background-color: rgb(0, 0, 0);</string>
-               </property>
-               <property name="text">
-                <string>TRAINING MODEL</string>
-               </property>
-               <property name="icon">
-                <iconset resource="icons.qrc">
-                 <normaloff>:/icons/icons/activity.svg</normaloff>:/icons/icons/activity.svg</iconset>
-               </property>
-               <property name="iconSize">
-                <size>
-                 <width>32</width>
-                 <height>32</height>
-                </size>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="upload">
-               <property name="font">
-                <font>
-                 <family>TH Mali Grade 6</family>
-                 <pointsize>22</pointsize>
-                 <weight>75</weight>
-                 <bold>true</bold>
-                </font>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">background-color: rgb(0, 0, 0);
-</string>
-               </property>
-               <property name="text">
-                <string>UPLOAD</string>
-               </property>
-               <property name="icon">
-                <iconset resource="icons.qrc">
-                 <normaloff>:/icons/icons/upload.svg</normaloff>:/icons/icons/upload.svg</iconset>
-               </property>
-               <property name="iconSize">
-                <size>
-                 <width>32</width>
-                 <height>32</height>
-                </size>
-               </property>
               </widget>
              </item>
             </layout>
@@ -1302,7 +1243,7 @@ QPushButton{
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_11">
           <item>
-           <widget class="QLabel" name="image_label">
+           <widget class="QLabel" name="label_3">
             <property name="minimumSize">
              <size>
               <width>480</width>
@@ -1312,19 +1253,28 @@ QPushButton{
             <property name="text">
              <string/>
             </property>
+            <property name="scaledContents">
+             <bool>true</bool>
+            </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="next">
-            <property name="text">
-             <string/>
+           <widget class="QTextBrowser" name="showtext">
+            <property name="font">
+             <font>
+              <family>TH Mali Grade 6</family>
+              <pointsize>45</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
             </property>
-            <property name="icon">
-             <iconset resource="icons.qrc">
-              <normaloff>:/icons/icons/chevron-right.svg</normaloff>:/icons/icons/chevron-right.svg</iconset>
+            <property name="styleSheet">
+             <string notr="true">border:3px solid rgb(230,5,64);
+background-color: rgb(0, 0, 0);
+</string>
             </property>
            </widget>
           </item>
@@ -1379,7 +1329,9 @@ border-radius:20px
             <property name="font">
              <font>
               <family>TH Mali Grade 6</family>
-              <pointsize>30</pointsize>
+              <pointsize>45</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
              </font>
             </property>
             <property name="styleSheet">

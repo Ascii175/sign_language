@@ -16,6 +16,7 @@ from PyQt5.QtWidgets import QWidget
 from PyQt5.QtGui import QImage
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtCore import QTimer
+from PyQt5 import QtCore, QtGui, QtWidgets,uic
 from sklearn.model_selection import train_test_split
 from tensorflow.keras.utils import to_categorical
 from tensorflow.keras.models import Sequential
@@ -30,6 +31,7 @@ from gtts import gTTS
 from playsound import *
 from function_sound_file import function_sound
 import speech_recognition as stt
+
 
 mp_holistic = mp.solutions.holistic # Holistic model 
 mp_drawing = mp.solutions.drawing_utils # Drawing utilities
@@ -59,32 +61,67 @@ def draw_styled_landmarks(image, results):
                              mp_drawing.DrawingSpec(color=(245,117,66), thickness=2, circle_radius=4), 
                              mp_drawing.DrawingSpec(color=(245,66,230), thickness=2, circle_radius=2)
                              )
-class MainWindow(QMainWindow):
+class MainWindow(QtWidgets.QMainWindow):
 	def __init__(self):
 		super().__init__()
-		self.ui = Ui_MainWindow()
-		self.ui.setupUi(self)	
+		# self.ui = Ui_MainWindow()
+		self.ui = uic.loadUi("untitled.ui",self)
+		# self.ui.setupUi(self)	
 		self.timer = QTimer()
 		self.timer.timeout.connect(self.viewCam)
-		
-		self.ui.train2.clicked.connect(self.train)
-		self.ui.pushButton_13.clicked.connect(self.reload)
 
-		self.ui.playSo.clicked.connect(self.playSo)
-		self.ui.mic.clicked.connect(self.microphone)
-		self.ui.showpic.clicked.connect(self.showpic)
+		#self.ui.train2.clicked.connect(self.train)
+		self.pushButton_13.clicked.connect(self.reload)
 
-		self.ui.time.clicked.connect(self.time)
-		self.ui.general.clicked.connect(self.general)
-		self.ui.day.clicked.connect(self.day)
-		self.ui.num.clicked.connect(self.number)
-		self.ui.question.clicked.connect(self.quest)
-		self.ui.sentence.clicked.connect(self.sentence)
-		self.ui.deny.clicked.connect(self.deny)
+		self.playSo.clicked.connect(self.playSoF)
+		self.mic.clicked.connect(self.microphone)
+		# self.ui.showpic.clicked.connect(self.showpic)
 
-	def train(self):
-		import train_258 
-		print("ไม่ต้องเทรนอีกครั้งเเล้ว")
+		self.thai.clicked.connect(self.thaiF)
+		self.eng.clicked.connect(self.engF)
+		self.time.clicked.connect(self.timeF)
+		self.general.clicked.connect(self.generalF)
+		self.day.clicked.connect(self.dayF)
+		self.num.clicked.connect(self.numberF)
+		self.question.clicked.connect(self.questF)
+		self.sentence.clicked.connect(self.sentenceF)
+		self.deny.clicked.connect(self.denyF)
+
+		self.num1.clicked.connect(self.show_num1)
+		self.num2.clicked.connect(self.show_num2)
+		self.day_img.clicked.connect(self.show_day)
+
+		self.th_img.clicked.connect(self.show_th)
+
+		self.eng_img.clicked.connect(self.show_eng)
+
+		self.time_img.clicked.connect(self.show_time)
+
+	def show_th(self):
+		pixmap = QPixmap('th.jpg')
+		self.label_3.setPixmap(pixmap)
+	def show_eng(self):
+		pixmap = QPixmap('ABC.jpg')
+		self.label_3.setPixmap(pixmap)
+
+	def show_num1(self):
+		pixmap = QPixmap('num.png')
+		self.label_3.setPixmap(pixmap)
+	def show_num2(self):
+		pixmap = QPixmap('num2.png')
+		self.label_3.setPixmap(pixmap)
+
+	def show_day(self):
+		pixmap = QPixmap('day.png')
+		self.label_3.setPixmap(pixmap)
+
+	def show_time(self):
+		pixmap = QPixmap('time.png')
+		self.label_3.setPixmap(pixmap)
+
+	# def train(self):
+	# 	import train_258 
+	# 	print("ไม่ต้องเทรนอีกครั้งเเล้ว")
 #################################################################################################################################################################
 	def reload(self):
 		return 0
@@ -93,11 +130,281 @@ class MainWindow(QMainWindow):
 		cv2.imshow("A-Z",img)
 		cv2.waitKey(0)
 		cv2.destroyAllWindows()
-		# fname = QFileDialog.getOpenFileName(self, "Open File", "./A_Z.png","All Files(*);; PNG")
-		# self.pixmap = QPixmap(fname[0])
-		# self.labe
-#################################################################################################################################################################
-	def time(self):
+###############################################################################################################################################################
+	def thaiF(self):
+		def mediapipe_detection(image, model):
+			image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB) # COLOR CONVERSION BGR 2 RGB
+			image.flags.writeable = False                  # Image is no longer writeable
+			results = model.process(image)                 # Make prediction
+			image.flags.writeable = True                   # Image is now writeable 
+			image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR) # COLOR COVERSION RGB 2 BGR
+			return image, results
+		def extract_keypoints(results, model_name):
+			pose = np.array([[res.x, res.y, res.z, res.visibility] for res in results.pose_landmarks.landmark]).flatten() if results.pose_landmarks else np.zeros(33*4)
+                #face = np.array([[res.x, res.y, res.z] for res in results.face_landmarks.landmark]).flatten() if results.face_landmarks else np.zeros(468*3)
+			lh = np.array([[res.x, res.y, res.z] for res in results.left_hand_landmarks.landmark]).flatten() if results.left_hand_landmarks else np.zeros(21*3)
+			rh = np.array([[res.x, res.y, res.z] for res in results.right_hand_landmarks.landmark]).flatten() if results.right_hand_landmarks else np.zeros(21*3)
+			if model_name ==  'test.h5':
+				return np.concatenate([pose, lh, rh])
+			else: 
+				return np.concatenate([rh]) 
+		def get_action(name):
+			if name == 'thai.h5':
+				return thai
+			elif name =='test.h5':
+				return new	   
+		thai = ['nothing','korkai','khorkhai','khorkyai','khorrakung','ngorngu','jorjan',
+                'chorching','chorchang','zorzoh','chorcher','yorying','dorchada','torbantak',
+                'thortan','thornanmunto','torputow','nornean','dordek','dhordhow','thorthung',
+                'thorthahan','thorthong','nornu','borbaimai','phorpa','phorphung','forfa',
+                'porpan','forfun','phorsampao','morma','yoryak','rorruea','lorling','worwaen',
+                'sorsara','sorruesi','sorsuea','horheep','lorchula','orang','hornokhook']
+		model_name = {'thai':'thai.h5',
+                    'eng':'alphabet.h5',
+                    'time' : 'time.h5',
+                    'number': 'number.h5',
+					'new' : 'test.h5'}
+		new = ['nothing','day','my']
+		name = model_name['thai']   
+		actions = np.array(get_action(name))
+		model = tf.keras.models.load_model(name)
+		colors=[]
+		for i in range(100):
+			colors.append((np.random.randint(256),np.random.randint(256),np.random.randint(256)))  
+		def prob_viz(res, actions, input_frame, colors):
+			scale = 0.25
+			output_frame = input_frame.copy()
+			for num, prob in enumerate(res):
+				cv2.rectangle(output_frame, (0,int(40+num*35*scale)), (int(prob*100*scale), int(50+num*35*scale)), colors[num], -1)
+				cv2.putText(output_frame, actions[num], (0, int(50+num*35*scale)), cv2.FONT_HERSHEY_SIMPLEX, 0.4, (255,255,255), 1, cv2.LINE_AA)
+			return output_frame
+		sequence = []
+		sentence = []
+		predictions = []
+		threshold = 0.8
+		predicted = 'nothing'
+		cap = cv2.VideoCapture(0)
+        # Set mediapipe model 
+		with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=0.5) as holistic:
+			while cap.isOpened():
+                # Read feed
+				ret, frame = cap.read()      
+                # Make detections
+				image, results = mediapipe_detection(frame, holistic)
+				cv2.rectangle(image, (0,0), (100, 640), (0, 0, 0), -1)
+                # Draw landmarks
+				draw_styled_landmarks(image, results)
+				keypoints = extract_keypoints(results,model_name=name)
+				sequence.append(keypoints)
+				sequence = sequence[-30:]
+				if len(sequence) == 30:
+					res = model.predict(np.expand_dims(sequence, axis=0))[0]
+					predicted = actions[np.argmax(res)]
+					predictions.append(np.argmax(res)) 
+					
+                #3. Viz logic
+					if np.unique(predictions[-30:])[0]==np.argmax(res): 
+						if res[np.argmax(res)] > threshold: 
+							
+							if len(sentence) > 0: 
+								if actions[np.argmax(res)] != sentence[-1]:
+									sentence.append(actions[np.argmax(res)])
+							else:
+								sentence.append(actions[np.argmax(res)])
+							
+					if len(sentence) > 5: 
+						sentence = sentence[-5:] 
+                # Viz probabilities
+					image = prob_viz(res, actions, image, colors) 
+				word = predicted
+				cv2.rectangle(image, (0,0), (640, 40), (245, 117, 16), -1)
+				cv2.putText(image, word, (3,30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA)  
+				if word == "nothing":
+					self.textBrowser.append("ไม่ได้ทำท่าอะไร")
+				elif word == "korkai":
+					self.textBrowser.append("ก")
+				elif word == "khorkhai":
+					self.textBrowser.append("ข")
+				elif word == "khorkyai":
+					self.textBrowser.append("ค")
+				elif word == "khorrakung":
+					self.textBrowser.append("ฆ")
+				elif word == "ngorngu":
+					self.textBrowser.append("ง")
+				elif word == "jorjan":
+					self.textBrowser.append("จ")
+				elif word == "chorching":
+					self.textBrowser.append("ฉ")
+				elif word == "chorchang":
+					self.textBrowser.append("ช")
+				elif word == "zorzoh":
+					self.textBrowser.append("ซ")
+				elif word == "chorcher":
+					self.textBrowser.append("ฌ")
+				elif word == "yorying":
+					self.textBrowser.append("ช")
+				elif word == "dorchada":
+					self.textBrowser.append("ฎ")
+				elif word == "torbantak":
+					self.textBrowser.append("ฏ")
+				elif word == "thortan":
+					self.textBrowser.append("ฐ")
+				elif word == "thornanmunto":
+					self.textBrowser.append("ฑ")
+				elif word == "torputow":
+					self.textBrowser.append("ฒ")
+				elif word == "nornean":
+					self.textBrowser.append("ณ")
+				elif word == "dordek":
+					self.textBrowser.append("ด")
+				elif word == "dhordhow":
+					self.textBrowser.append("ต")
+				elif word == "thorthung":
+					self.textBrowser.append("ถ")
+				elif word == "thorthahan":
+					self.textBrowser.append("ท")
+				elif word == "thorthong":
+					self.textBrowser.append("ธ")
+				elif word == "nornu":
+					self.textBrowser.append("น")
+				elif word == "borbaimai":
+					self.textBrowser.append("บ")
+				elif word == "phorpa":
+					self.textBrowser.append("ป")
+				elif word == "forfa":
+					self.textBrowser.append("ฝ")
+				elif word == "porpan":
+					self.textBrowser.append("พ")
+				elif word == "forfun":
+					self.textBrowser.append("ฟ")
+				elif word == "phorsampao":
+					self.textBrowser.append("ภ")
+				elif word == "morma":
+					self.textBrowser.append("ม")
+				elif word == "yoryak":
+					self.textBrowser.append("ย")
+				elif word == "rorruea":
+					self.textBrowser.append("ร")
+				elif word == "lorling":
+					self.textBrowser.append("ล")
+				elif word == "worwaen":
+					self.textBrowser.append("ว")
+				elif word == "sorsara":
+					self.textBrowser.append("ศ")
+				elif word == "sorruesi":
+					self.textBrowser.append("ษ")
+				elif word == "sorsuea":
+					self.textBrowser.append("ส")
+				elif word == "horheep":
+					self.textBrowser.append("ห")
+				elif word == "lorchula":
+					self.textBrowser.append("ฬ")
+				elif word == "orang":
+					self.textBrowser.append("อ")
+				elif word == "hornokhook":
+					self.textBrowser.append("ฮ")
+				cv2.imshow('OpenCV Feed', image)  
+				if cv2.waitKey(10) & 0xFF == ord('q'):
+					break
+			cap.release()
+			cv2.destroyAllWindows()
+########################################################################################################################################################################
+	def engF(self):
+		def mediapipe_detection(image, model):
+			image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB) # COLOR CONVERSION BGR 2 RGB
+			image.flags.writeable = False                  # Image is no longer writeable
+			results = model.process(image)                 # Make prediction
+			image.flags.writeable = True                   # Image is now writeable 
+			image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR) # COLOR COVERSION RGB 2 BGR
+			return image, results
+		def extract_keypoints(results, model_name):
+			pose = np.array([[res.x, res.y, res.z, res.visibility] for res in results.pose_landmarks.landmark]).flatten() if results.pose_landmarks else np.zeros(33*4)
+                #face = np.array([[res.x, res.y, res.z] for res in results.face_landmarks.landmark]).flatten() if results.face_landmarks else np.zeros(468*3)
+			lh = np.array([[res.x, res.y, res.z] for res in results.left_hand_landmarks.landmark]).flatten() if results.left_hand_landmarks else np.zeros(21*3)
+			rh = np.array([[res.x, res.y, res.z] for res in results.right_hand_landmarks.landmark]).flatten() if results.right_hand_landmarks else np.zeros(21*3)
+			if model_name ==  'test.h5':
+				return np.concatenate([pose, lh, rh])
+			else: 
+				return np.concatenate([rh]) 
+		def get_action(name):
+			if name == 'alphabet.h5':
+				return az
+			elif name =='test.h5':
+				return new	   
+		az = ['nothing','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o',
+                'p','q','r','s','t','u','v','w','x','y','z']    
+		model_name = {'thai':'thai.h5',
+                    'eng':'alphabet.h5',
+                    'time' : 'time.h5',
+                    'number': 'number.h5',
+					'new' : 'test.h5'}
+		new = ['nothing','day','my']
+		name = model_name['eng']   
+		actions = np.array(get_action(name))
+		model = tf.keras.models.load_model(name)
+		colors=[]
+		for i in range(100):
+			colors.append((np.random.randint(256),np.random.randint(256),np.random.randint(256)))  
+		def prob_viz(res, actions, input_frame, colors):
+			scale = 0.25
+			output_frame = input_frame.copy()
+			for num, prob in enumerate(res):
+				cv2.rectangle(output_frame, (0,int(40+num*35*scale)), (int(prob*100*scale), int(50+num*35*scale)), colors[num], -1)
+				cv2.putText(output_frame, actions[num], (0, int(50+num*35*scale)), cv2.FONT_HERSHEY_SIMPLEX, 0.4, (255,255,255), 1, cv2.LINE_AA)
+			return output_frame
+		sequence = []
+		sentence = []
+		predictions = []
+		threshold = 0.8
+		predicted = ''
+		cap = cv2.VideoCapture(0)
+        # Set mediapipe model 
+		with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=0.5) as holistic:
+			while cap.isOpened():
+                # Read feed
+				ret, frame = cap.read()      
+                # Make detections
+				image, results = mediapipe_detection(frame, holistic)
+				cv2.rectangle(image, (0,0), (100, 640), (0, 0, 0), -1)
+                # Draw landmarks
+				draw_styled_landmarks(image, results)
+				keypoints = extract_keypoints(results,model_name=name)
+				sequence.append(keypoints)
+				sequence = sequence[-30:]
+				if len(sequence) == 30:
+					res = model.predict(np.expand_dims(sequence, axis=0))[0]
+					predicted = actions[np.argmax(res)]
+					predictions.append(np.argmax(res)) 
+					
+                #3. Viz logic
+					if np.unique(predictions[-30:])[0]==np.argmax(res): 
+						if res[np.argmax(res)] > threshold: 
+							
+							if len(sentence) > 0: 
+								if actions[np.argmax(res)] != sentence[-1]:
+									sentence.append(actions[np.argmax(res)])
+							else:
+								sentence.append(actions[np.argmax(res)])
+							
+					if len(sentence) > 5: 
+						sentence = sentence[-5:] 
+                # Viz probabilities
+					image = prob_viz(res, actions, image, colors) 
+				word = predicted
+				self.ui.textBrowser.append(word)
+				cv2.rectangle(image, (0,0), (640, 40), (245, 117, 16), -1)
+				cv2.putText(image, word, (3,30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA)  
+				if word == "nothing":
+					self.textBrowser.append("ไม่ได้ทำท่าอะไร")
+				elif word == predicted :
+					self.textBrowser.append(word)
+				cv2.imshow('OpenCV Feed', image)  
+				if cv2.waitKey(10) & 0xFF == ord('q'):
+					break
+			cap.release()
+			cv2.destroyAllWindows()
+#############################################################################################################################################################
+	def timeF(self):
 		def mediapipe_detection(image, model):
 				image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB) # COLOR CONVERSION BGR 2 RGB
 				image.flags.writeable = False                  # Image is no longer writeable
@@ -130,15 +437,15 @@ class MainWindow(QMainWindow):
 		actions = np.array(get_action(name))
 		model = tf.keras.models.load_model(name)
 		colors=[]
-		for i in range(100):
-			colors.append((np.random.randint(256),np.random.randint(256),np.random.randint(256)))  
-		def prob_viz(res, actions, input_frame, colors):
-				scale = 0.25
-				output_frame = input_frame.copy()
-				for num, prob in enumerate(res):
-					cv2.rectangle(output_frame, (0,int(40+num*35*scale)), (int(prob*100*scale), int(50+num*35*scale)), colors[num], -1)
-					cv2.putText(output_frame, actions[num], (0, int(50+num*35*scale)),cv2.FONT_HERSHEY_SIMPLEX, 0.4, (255,255,255), 1, cv2.LINE_AA)
-				return output_frame
+		# for i in range(100):
+		# 	colors.append((np.random.randint(256),np.random.randint(256),np.random.randint(256)))  
+		# def prob_viz(res, actions, input_frame, colors):
+		# 		scale = 0.25
+		# 		output_frame = input_frame.copy()
+		# 		# for num, prob in enumerate(res):
+		# 		# 	# cv2.rectangle(output_frame, (0,int(40+num*35*scale)), (int(prob*100*scale), int(50+num*35*scale)), colors[num], -1)
+		# 		# 	# cv2.putText(output_frame, actions[num], (0, int(50+num*35*scale)),cv2.FONT_HERSHEY_SIMPLEX, 0.4, (255,255,255), 1, cv2.LINE_AA)
+		# 		# return output_frame
 		sequence = []
 		sentence = []
 		predictions = []
@@ -157,7 +464,7 @@ class MainWindow(QMainWindow):
 					# Make detections
 				image, results = mediapipe_detection(frame, holistic)
 				#print(results)
-				cv2.rectangle(image, (0,0), (100, 640), (0, 0, 0), -1)
+				# cv2.rectangle(image, (0,0), (100, 640), (0, 0, 0), -1)
 					# Draw landmarks
 				draw_styled_landmarks(image, results)
 					# 2. Prediction logic
@@ -187,11 +494,12 @@ class MainWindow(QMainWindow):
 						self.ui.textBrowser.append(text) 
 						print(text)										
 						count_same_frame = 0
-					image = prob_viz(res, actions, image, colors) 
+					# image = prob_viz(res, actions, image, colors) 
 				word = predicted
 				#print(word)
-				cv2.rectangle(image, (0,0), (640, 40), (245, 117, 16), -1)
-				cv2.putText(image, word, (3,30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA)  
+				self.ui.showtext.append(word) 
+				# cv2.rectangle(image, (0,0), (640, 40), (245, 117, 16), -1)
+				# cv2.putText(image, word, (3,30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA)  
 				cv2.imshow('OpenCV Feed', image)  
 					# Break gracefully
 				if cv2.waitKey(10) & 0xFF == ord('q'):
@@ -199,7 +507,7 @@ class MainWindow(QMainWindow):
 			cap.release()
 			cv2.destroyAllWindows()
 ##############################################################################################################################################################
-	def general(self):
+	def generalF(self):
 		def mediapipe_detection(image, model):
 				image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB) # COLOR CONVERSION BGR 2 RGB
 				image.flags.writeable = False                  # Image is no longer writeable
@@ -233,15 +541,15 @@ class MainWindow(QMainWindow):
 		actions = np.array(get_action(name))
 		model = tf.keras.models.load_model(name)
 		colors=[]
-		for i in range(100):
-			colors.append((np.random.randint(256),np.random.randint(256),np.random.randint(256)))  
-		def prob_viz(res, actions, input_frame, colors):
-				scale = 0.25
-				output_frame = input_frame.copy()
-				for num, prob in enumerate(res):
-					cv2.rectangle(output_frame, (0,int(40+num*35*scale)), (int(prob*100*scale), int(50+num*35*scale)), colors[num], -1)
-					cv2.putText(output_frame, actions[num], (0, int(50+num*35*scale)),cv2.FONT_HERSHEY_SIMPLEX, 0.4, (255,255,255), 1, cv2.LINE_AA)
-				return output_frame
+		# for i in range(100):
+		# 	colors.append((np.random.randint(256),np.random.randint(256),np.random.randint(256)))  
+		# def prob_viz(res, actions, input_frame, colors):
+		# 		scale = 0.25
+		# 		output_frame = input_frame.copy()
+		# 		for num, prob in enumerate(res):
+		# 			cv2.rectangle(output_frame, (0,int(40+num*35*scale)), (int(prob*100*scale), int(50+num*35*scale)), colors[num], -1)
+		# 			cv2.putText(output_frame, actions[num], (0, int(50+num*35*scale)),cv2.FONT_HERSHEY_SIMPLEX, 0.4, (255,255,255), 1, cv2.LINE_AA)
+		# 		return output_frame
 		sequence = []
 		sentence = []
 		predictions = []
@@ -260,7 +568,7 @@ class MainWindow(QMainWindow):
 					# Make detections
 				image, results = mediapipe_detection(frame, holistic)
 				#print(results)
-				cv2.rectangle(image, (0,0), (100, 640), (0, 0, 0), -1)
+				# cv2.rectangle(image, (0,0), (100, 640), (0, 0, 0), -1)
 					# Draw landmarks
 				draw_styled_landmarks(image, results)
 					# 2. Prediction logic
@@ -302,11 +610,11 @@ class MainWindow(QMainWindow):
 							
 					if len(sentence) > 5: 
 						sentence = sentence[-5:] 
-					image = prob_viz(res, actions, image, colors) 
+					# image = prob_viz(res, actions, image, colors) 
 				word = predicted
 				#print(word)
-				cv2.rectangle(image, (0,0), (640, 40), (245, 117, 16), -1)
-				cv2.putText(image, word, (3,30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA)  
+				# cv2.rectangle(image, (0,0), (640, 40), (245, 117, 16), -1)
+				# cv2.putText(image, word, (3,30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA)  
 				cv2.imshow('OpenCV Feed', image)  
 					# Break gracefully
 				if cv2.waitKey(10) & 0xFF == ord('q'):
@@ -314,7 +622,7 @@ class MainWindow(QMainWindow):
 			cap.release()
 			cv2.destroyAllWindows()
 #################################################################################################################################################################
-	def day(self):
+	def dayF(self):
 		def mediapipe_detection(image, model):
 				image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB) # COLOR CONVERSION BGR 2 RGB
 				image.flags.writeable = False                  # Image is no longer writeable
@@ -347,15 +655,15 @@ class MainWindow(QMainWindow):
 		actions = np.array(get_action(name))
 		model = tf.keras.models.load_model(name)
 		colors=[]
-		for i in range(100):
-			colors.append((np.random.randint(256),np.random.randint(256),np.random.randint(256)))  
-		def prob_viz(res, actions, input_frame, colors):
-				scale = 0.25
-				output_frame = input_frame.copy()
-				for num, prob in enumerate(res):
-					cv2.rectangle(output_frame, (0,int(40+num*35*scale)), (int(prob*100*scale), int(50+num*35*scale)), colors[num], -1)
-					cv2.putText(output_frame, actions[num], (0, int(50+num*35*scale)),cv2.FONT_HERSHEY_SIMPLEX, 0.4, (255,255,255), 1, cv2.LINE_AA)
-				return output_frame
+		# for i in range(100):
+		# 	colors.append((np.random.randint(256),np.random.randint(256),np.random.randint(256)))  
+		# def prob_viz(res, actions, input_frame, colors):
+		# 		scale = 0.25
+		# 		output_frame = input_frame.copy()
+		# 		for num, prob in enumerate(res):
+		# 			cv2.rectangle(output_frame, (0,int(40+num*35*scale)), (int(prob*100*scale), int(50+num*35*scale)), colors[num], -1)
+		# 			cv2.putText(output_frame, actions[num], (0, int(50+num*35*scale)),cv2.FONT_HERSHEY_SIMPLEX, 0.4, (255,255,255), 1, cv2.LINE_AA)
+		# 		return output_frame
 		sequence = []
 		sentence = []
 		predictions = []
@@ -374,7 +682,7 @@ class MainWindow(QMainWindow):
 					# Make detections
 				image, results = mediapipe_detection(frame, holistic)
 				#print(results)
-				cv2.rectangle(image, (0,0), (100, 640), (0, 0, 0), -1)
+				# cv2.rectangle(image, (0,0), (100, 640), (0, 0, 0), -1)
 					# Draw landmarks
 				draw_styled_landmarks(image, results)
 					# 2. Prediction logic
@@ -416,11 +724,11 @@ class MainWindow(QMainWindow):
 							
 					if len(sentence) > 5: 
 						sentence = sentence[-5:] 
-					image = prob_viz(res, actions, image, colors) 
+					# image = prob_viz(res, actions, image, colors) 
 				word = predicted
-				#print(word)
-				cv2.rectangle(image, (0,0), (640, 40), (245, 117, 16), -1)
-				cv2.putText(image, word, (3,30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA)  
+				print(word)
+				# cv2.rectangle(image, (0,0), (640, 40), (245, 117, 16), -1)
+				# cv2.putText(image, word, (3,30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA)  
 				cv2.imshow('OpenCV Feed', image)  
 					# Break gracefully
 				if cv2.waitKey(10) & 0xFF == ord('q'):
@@ -428,7 +736,7 @@ class MainWindow(QMainWindow):
 			cap.release()
 			cv2.destroyAllWindows()
 #################################################################################################################################################################
-	def number(self):
+	def numberF(self):
 		def mediapipe_detection(image, model):
 			image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB) # COLOR CONVERSION BGR 2 RGB
 			image.flags.writeable = False                  # Image is no longer writeable
@@ -549,13 +857,13 @@ class MainWindow(QMainWindow):
 			print("กำลังอัดเสียง")
 			audio = recog.listen( mic )
 			try:
-				self.ui.textBrowser.append(recog.recognize_google(audio,None,'th'))
+				self.textBrowser.append(recog.recognize_google(audio,None,'th'))
 			except stt.UnknownValueError:
 				print("ไม่เข้าใจเสียงที่นำเข้า")
 			except stt.RequestError as e:
 				print("ไม่สามารถนำข้อมูลมาจากบริการของ Google: {0}".format(e))
 #################################################################################################################################################################
-	def quest(self):
+	def questF(self):
 		def mediapipe_detection(image, model):
 				image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB) # COLOR CONVERSION BGR 2 RGB
 				image.flags.writeable = False                  # Image is no longer writeable
@@ -591,15 +899,15 @@ class MainWindow(QMainWindow):
 		actions = np.array(get_action(name))
 		model = tf.keras.models.load_model(name)
 		colors=[]
-		for i in range(100):
-			colors.append((np.random.randint(256),np.random.randint(256),np.random.randint(256)))  
-		def prob_viz(res, actions, input_frame, colors):
-				scale = 0.25
-				output_frame = input_frame.copy()
-				for num, prob in enumerate(res):
-					cv2.rectangle(output_frame, (0,int(40+num*35*scale)), (int(prob*100*scale), int(50+num*35*scale)), colors[num], -1)
-					cv2.putText(output_frame, actions[num], (0, int(50+num*35*scale)),cv2.FONT_HERSHEY_SIMPLEX, 0.4, (255,255,255), 1, cv2.LINE_AA)
-				return output_frame
+		# for i in range(100):
+		# 	colors.append((np.random.randint(256),np.random.randint(256),np.random.randint(256)))  
+		# def prob_viz(res, actions, input_frame, colors):
+		# 		scale = 0.25
+		# 		output_frame = input_frame.copy()
+		# 		for num, prob in enumerate(res):
+		# 			cv2.rectangle(output_frame, (0,int(40+num*35*scale)), (int(prob*100*scale), int(50+num*35*scale)), colors[num], -1)
+		# 			cv2.putText(output_frame, actions[num], (0, int(50+num*35*scale)),cv2.FONT_HERSHEY_SIMPLEX, 0.4, (255,255,255), 1, cv2.LINE_AA)
+		# 		return output_frame
 		sequence = []
 		sentence = []
 		predictions = []
@@ -618,7 +926,7 @@ class MainWindow(QMainWindow):
 					# Make detections
 				image, results = mediapipe_detection(frame, holistic)
 				#print(results)
-				cv2.rectangle(image, (0,0), (100, 640), (0, 0, 0), -1)
+				# cv2.rectangle(image, (0,0), (100, 640), (0, 0, 0), -1)
 					# Draw landmarks
 				draw_styled_landmarks(image, results)
 					# 2. Prediction logic
@@ -670,11 +978,11 @@ class MainWindow(QMainWindow):
 							
 					if len(sentence) > 5: 
 						sentence = sentence[-5:] 
-					image = prob_viz(res, actions, image, colors) 
+					# image = prob_viz(res, actions, image, colors) 
 				word = predicted
 				print(word)
-				cv2.rectangle(image, (0,0), (640, 40), (245, 117, 16), -1)
-				cv2.putText(image, word, (3,30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA)  
+				# cv2.rectangle(image, (0,0), (640, 40), (245, 117, 16), -1)
+				# cv2.putText(image, word, (3,30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA)  
 				cv2.imshow('OpenCV Feed', image)  
 					# Break gracefully
 				if cv2.waitKey(10) & 0xFF == ord('q'):
@@ -682,7 +990,7 @@ class MainWindow(QMainWindow):
 			cap.release()
 			cv2.destroyAllWindows()
 #################################################################################################################################################################
-	def sentence(self):
+	def sentenceF(self):
 		def mediapipe_detection(image, model):
 				image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB) # COLOR CONVERSION BGR 2 RGB
 				image.flags.writeable = False                  # Image is no longer writeable
@@ -716,15 +1024,15 @@ class MainWindow(QMainWindow):
 		actions = np.array(get_action(name))
 		model = tf.keras.models.load_model(name)
 		colors=[]
-		for i in range(100):
-			colors.append((np.random.randint(256),np.random.randint(256),np.random.randint(256)))  
-		def prob_viz(res, actions, input_frame, colors):
-				scale = 0.25
-				output_frame = input_frame.copy()
-				for num, prob in enumerate(res):
-					cv2.rectangle(output_frame, (0,int(40+num*35*scale)), (int(prob*100*scale), int(50+num*35*scale)), colors[num], -1)
-					cv2.putText(output_frame, actions[num], (0, int(50+num*35*scale)),cv2.FONT_HERSHEY_SIMPLEX, 0.4, (255,255,255), 1, cv2.LINE_AA)
-				return output_frame
+		# for i in range(100):
+		# 	colors.append((np.random.randint(256),np.random.randint(256),np.random.randint(256)))  
+		# def prob_viz(res, actions, input_frame, colors):
+		# 		scale = 0.25
+		# 		output_frame = input_frame.copy()
+		# 		for num, prob in enumerate(res):
+		# 			cv2.rectangle(output_frame, (0,int(40+num*35*scale)), (int(prob*100*scale), int(50+num*35*scale)), colors[num], -1)
+		# 			cv2.putText(output_frame, actions[num], (0, int(50+num*35*scale)),cv2.FONT_HERSHEY_SIMPLEX, 0.4, (255,255,255), 1, cv2.LINE_AA)
+		# 		return output_frame
 		sequence = []
 		sentence = []
 		predictions = []
@@ -793,11 +1101,11 @@ class MainWindow(QMainWindow):
 							
 					if len(sentence) > 5: 
 						sentence = sentence[-5:] 
-					image = prob_viz(res, actions, image, colors) 
+					# image = prob_viz(res, actions, image, colors) 
 				word = predicted
 				#print(word)
-				cv2.rectangle(image, (0,0), (640, 40), (245, 117, 16), -1)
-				cv2.putText(image, word, (3,30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA)  
+				# cv2.rectangle(image, (0,0), (640, 40), (245, 117, 16), -1)
+				# cv2.putText(image, word, (3,30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA)  
 				cv2.imshow('OpenCV Feed', image)  		
 					# Break gracefully
 				if cv2.waitKey(10) & 0xFF == ord('q'):
@@ -805,7 +1113,7 @@ class MainWindow(QMainWindow):
 			cap.release()
 			cv2.destroyAllWindows()
 #################################################################################################################################################################
-	def deny(self):
+	def denyF(self):
 		def mediapipe_detection(image, model):
 				image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB) # COLOR CONVERSION BGR 2 RGB
 				image.flags.writeable = False                  # Image is no longer writeable
@@ -839,15 +1147,15 @@ class MainWindow(QMainWindow):
 		actions = np.array(get_action(name))
 		model = tf.keras.models.load_model(name)
 		colors=[]
-		for i in range(100):
-			colors.append((np.random.randint(256),np.random.randint(256),np.random.randint(256)))  
-		def prob_viz(res, actions, input_frame, colors):
-				scale = 0.25
-				output_frame = input_frame.copy()
-				for num, prob in enumerate(res):
-					cv2.rectangle(output_frame, (0,int(40+num*35*scale)), (int(prob*100*scale), int(50+num*35*scale)), colors[num], -1)
-					cv2.putText(output_frame, actions[num], (0, int(50+num*35*scale)),cv2.FONT_HERSHEY_SIMPLEX, 0.4, (255,255,255), 1, cv2.LINE_AA)
-				return output_frame
+		# for i in range(100):
+		# 	colors.append((np.random.randint(256),np.random.randint(256),np.random.randint(256)))  
+		# def prob_viz(res, actions, input_frame, colors):
+		# 		scale = 0.25
+		# 		output_frame = input_frame.copy()
+		# 		for num, prob in enumerate(res):
+		# 			cv2.rectangle(output_frame, (0,int(40+num*35*scale)), (int(prob*100*scale), int(50+num*35*scale)), colors[num], -1)
+		# 			cv2.putText(output_frame, actions[num], (0, int(50+num*35*scale)),cv2.FONT_HERSHEY_SIMPLEX, 0.4, (255,255,255), 1, cv2.LINE_AA)
+		# 		return output_frame
 		sequence = []
 		sentence = []
 		predictions = []
@@ -865,7 +1173,7 @@ class MainWindow(QMainWindow):
 					# Make detections
 				image, results = mediapipe_detection(frame, holistic)
 				#print(results)
-				cv2.rectangle(image, (0,0), (100, 640), (0, 0, 0), -1)
+				# cv2.rectangle(image, (0,0), (100, 640), (0, 0, 0), -1)
 					# Draw landmarks
 				draw_styled_landmarks(image, results)
 					# 2. Prediction logic
@@ -884,7 +1192,7 @@ class MainWindow(QMainWindow):
 						count_same_frame = 0	
 							
 
-					if predicted == "nothing" or  cv2.waitKey(10) & 0xFF == ord('c'):
+					if predicted == "nothing" or cv2.waitKey(10) & 0xFF == ord('c'):
 						if count_same_frame > 100 :	
 							print("not")					
 							text = ''
@@ -921,11 +1229,11 @@ class MainWindow(QMainWindow):
 							
 					if len(sentence) > 5: 
 						sentence = sentence[-5:] 
-					image = prob_viz(res, actions, image, colors) 
+					# image = prob_viz(res, actions, image, colors) 
 				word = predicted
 				print(word)
-				cv2.rectangle(image, (0,0), (640, 40), (245, 117, 16), -1)
-				cv2.putText(image, word, (3,30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA)  
+				# cv2.rectangle(image, (0,0), (640, 40), (245, 117, 16), -1)
+				# cv2.putText(image, word, (3,30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA)  
 				cv2.imshow('OpenCV Feed', image)  		
 					# Break gracefully
 				if cv2.waitKey(10) & 0xFF == ord('q'):
@@ -933,7 +1241,7 @@ class MainWindow(QMainWindow):
 			cap.release()
 			cv2.destroyAllWindows()
 ################################################################################################################################################################
-	def playSo(self):
+	def playSoF(self):
 		function_sound()
 #################################################################################################################################################################
 	def viewCam(self):
