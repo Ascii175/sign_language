@@ -116,7 +116,7 @@ class Ui_MainWindow(object):
 "")
         self.menu1 = QWidget()
         self.menu1.setObjectName(u"menu1")
-        self.menu1.setGeometry(QRect(0, -20, 213, 534))
+        self.menu1.setGeometry(QRect(0, 0, 213, 534))
         self.menu1.setStyleSheet(u"border:none;\n"
 "")
         self.verticalLayout_5 = QVBoxLayout(self.menu1)
@@ -234,10 +234,10 @@ class Ui_MainWindow(object):
 
         icon4 = QIcon()
         icon4.addFile(u":/icons/icons/chevron-down.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.toolBox.addItem(self.menu1, icon4, u"\u0e2b\u0e21\u0e27\u0e14\u0e04\u0e33")
+        self.toolBox.addItem(self.menu1, icon4, u"\u0e2b\u0e21\u0e27\u0e14\u0e04\u0e33-\u0e1b\u0e23\u0e30\u0e42\u0e22\u0e04")
         self.menu2 = QWidget()
         self.menu2.setObjectName(u"menu2")
-        self.menu2.setGeometry(QRect(0, 0, 230, 453))
+        self.menu2.setGeometry(QRect(0, -23, 213, 476))
         self.verticalLayout_7 = QVBoxLayout(self.menu2)
         self.verticalLayout_7.setSpacing(0)
         self.verticalLayout_7.setObjectName(u"verticalLayout_7")
@@ -354,6 +354,14 @@ class Ui_MainWindow(object):
         self.gen_img.setIconSize(QSize(32, 32))
 
         self.verticalLayout_8.addWidget(self.gen_img)
+
+        self.gen_img2 = QPushButton(self.frame_12)
+        self.gen_img2.setObjectName(u"gen_img2")
+        self.gen_img2.setFont(font)
+        self.gen_img2.setIcon(icon10)
+        self.gen_img2.setIconSize(QSize(32, 32))
+
+        self.verticalLayout_8.addWidget(self.gen_img2)
 
 
         self.verticalLayout_7.addWidget(self.frame_12)
@@ -635,14 +643,15 @@ class Ui_MainWindow(object):
         self.deny.setText(QCoreApplication.translate("MainWindow", u"\u0e2b\u0e21\u0e27\u0e14\u0e1b\u0e23\u0e30\u0e42\u0e22\u0e04\u0e1b\u0e0e\u0e34\u0e40\u0e2a\u0e18", None))
         self.question.setText(QCoreApplication.translate("MainWindow", u"\u0e2b\u0e21\u0e27\u0e14\u0e1b\u0e23\u0e30\u0e42\u0e22\u0e04\u0e04\u0e33\u0e16\u0e32\u0e21", None))
         self.sentence.setText(QCoreApplication.translate("MainWindow", u"\u0e2b\u0e21\u0e27\u0e14\u0e1b\u0e23\u0e30\u0e42\u0e22\u0e04\u0e17\u0e31\u0e48\u0e27\u0e44\u0e1b", None))
-        self.toolBox.setItemText(self.toolBox.indexOf(self.menu1), QCoreApplication.translate("MainWindow", u"\u0e2b\u0e21\u0e27\u0e14\u0e04\u0e33", None))
+        self.toolBox.setItemText(self.toolBox.indexOf(self.menu1), QCoreApplication.translate("MainWindow", u"\u0e2b\u0e21\u0e27\u0e14\u0e04\u0e33-\u0e1b\u0e23\u0e30\u0e42\u0e22\u0e04", None))
         self.th_img.setText(QCoreApplication.translate("MainWindow", u"\u0e20\u0e32\u0e29\u0e32\u0e44\u0e17\u0e22", None))
         self.eng_img.setText(QCoreApplication.translate("MainWindow", u"\u0e15\u0e31\u0e27\u0e2d\u0e31\u0e01\u0e29\u0e23\u0e20\u0e32\u0e29\u0e32\u0e2d\u0e31\u0e07\u0e01\u0e24\u0e29 ", None))
         self.time_img.setText(QCoreApplication.translate("MainWindow", u"\u0e40\u0e27\u0e25\u0e32", None))
         self.num1.setText(QCoreApplication.translate("MainWindow", u"\u0e15\u0e31\u0e27\u0e40\u0e25\u0e02 1", None))
         self.num2.setText(QCoreApplication.translate("MainWindow", u"\u0e15\u0e31\u0e27\u0e40\u0e25\u0e02 2", None))
         self.day_img.setText(QCoreApplication.translate("MainWindow", u"\u0e27\u0e31\u0e19 \u0e40\u0e14\u0e37\u0e2d\u0e19 \u0e1b\u0e35", None))
-        self.gen_img.setText(QCoreApplication.translate("MainWindow", u"\u0e04\u0e33\u0e17\u0e31\u0e48\u0e27\u0e44\u0e1b", None))
+        self.gen_img.setText(QCoreApplication.translate("MainWindow", u"\u0e04\u0e33\u0e17\u0e31\u0e48\u0e27\u0e44\u0e1b1", None))
+        self.gen_img2.setText(QCoreApplication.translate("MainWindow", u"\u0e04\u0e33\u0e17\u0e31\u0e48\u0e27\u0e44\u0e1b2", None))
         self.toolBox.setItemText(self.toolBox.indexOf(self.menu2), QCoreApplication.translate("MainWindow", u"\u0e23\u0e39\u0e1b\u0e20\u0e32\u0e1e\u0e15\u0e31\u0e27\u0e2d\u0e22\u0e48\u0e32\u0e07", None))
         self.newMo.setText(QCoreApplication.translate("MainWindow", u"\u0e17\u0e48\u0e32\u0e43\u0e2b\u0e21\u0e48", None))
         self.pushButton.setText(QCoreApplication.translate("MainWindow", u"Exit", None))

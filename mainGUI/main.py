@@ -90,6 +90,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
 		self.num1.clicked.connect(self.show_num1)
 		self.num2.clicked.connect(self.show_num2)
+
 		self.day_img.clicked.connect(self.show_day)
 
 		self.th_img.clicked.connect(self.show_th)
@@ -97,27 +98,37 @@ class MainWindow(QtWidgets.QMainWindow):
 		self.eng_img.clicked.connect(self.show_eng)
 
 		self.time_img.clicked.connect(self.show_time)
+		
+		self.gen_img.clicked.connect(self.show_gen)
+		self.gen_img2.clicked.connect(self.show_gen2)
 
 	def show_th(self):
-		pixmap = QPixmap('th.jpg')
+		pixmap = QPixmap('./img/th.jpg')
 		self.label_3.setPixmap(pixmap)
 	def show_eng(self):
-		pixmap = QPixmap('ABC.jpg')
+		pixmap = QPixmap('./img/ABC.jpg')
 		self.label_3.setPixmap(pixmap)
 
 	def show_num1(self):
-		pixmap = QPixmap('num.png')
+		pixmap = QPixmap('./img/num.png')
 		self.label_3.setPixmap(pixmap)
 	def show_num2(self):
-		pixmap = QPixmap('num2.png')
+		pixmap = QPixmap('./img/num2.png')
 		self.label_3.setPixmap(pixmap)
 
 	def show_day(self):
-		pixmap = QPixmap('day.png')
+		pixmap = QPixmap('./img/day.png')
 		self.label_3.setPixmap(pixmap)
 
 	def show_time(self):
-		pixmap = QPixmap('time.png')
+		pixmap = QPixmap('./img/time.png')
+		self.label_3.setPixmap(pixmap)
+
+	def show_gen(self):
+		pixmap = QPixmap('./img/gen1.png')
+		self.label_3.setPixmap(pixmap)
+	def show_gen2(self):
+		pixmap = QPixmap('./img/gen2.png')
 		self.label_3.setPixmap(pixmap)
 
 	# def train(self):
