@@ -29,10 +29,41 @@ from sklearn.metrics import multilabel_confusion_matrix, accuracy_score, classif
 from tensorflow import math
 import numpy as np
 from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
+from numpy import *
+import sys
+import sys
+import os
+from typing_extensions import *
+import cv2
+import time
+import glob
+import os
+import cv2 
+import numpy as np
+import os 
+import matplotlib.pyplot as plt 
+import time 
+import mediapipe as mp
+from PIL import ImageFont, ImageDraw, Image
+import tensorflow as tf
+from sklearn.model_selection import train_test_split
+from tensorflow.keras.utils import to_categorical
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import LSTM, Dense
+from tensorflow.keras.callbacks import TensorBoard
+from sklearn.metrics import multilabel_confusion_matrix, accuracy_score
 
 mp_holistic = mp.solutions.holistic # Holistic model 
 mp_drawing = mp.solutions.drawing_utils # Drawing utilities 
 class train():
+        DATA_PATH = os.path.join('MP_Data') 
+        actions = ([])
+        n = int(input("Enter number of elements : "))
+        for i in range(0, n):
+            v = str(input("model train:  "))
+            actions.append(v)      
+        file = str(input("file name:  "))
+        actions = append(actions, v)
         score = 0
         while 1.0 >= score:
             def mediapipe_detection(image, model):
@@ -75,7 +106,6 @@ class train():
                 rh = np.array([[res.x, res.y, res.z] for res in results.right_hand_landmarks.landmark]).flatten() if results.right_hand_landmarks else np.zeros(21*3)
                 return np.concatenate([pose, lh, rh])
             # Path for exported data, numpy arrays
-            DATA_PATH = os.path.join('MP_Data') 
 
             # Actions that we try to detect
             # ADD ACTION HERE 
@@ -90,8 +120,8 @@ class train():
             # adjust ก 
             # general
             # general = ['nothing','name','lastname','me','you','cute','fun','remember','yes','no','sick','age','same','sorry','fine','how-much','good-luck','hello','like','dislike','beautiful']           
-            general = ['nothing','day','monday','tuesday','wednesday','thursday','friday','saturday','sunday','week','today-now','tomorrow','the-day-after-tomorrow','yesterday',
-                        'the-other-day','month','january','february','march','june','july','august','september','october','november','december','year']
+            # general = ['nothing','day','monday','tuesday','wednesday','thursday','friday','saturday','sunday','week','today-now','tomorrow','the-day-after-tomorrow','yesterday',
+            #             'the-other-day','month','january','february','march','june','july','august','september','october','november','december','year']
             #ประโยค           
             # general  = ['nothing','age','Do-you-understand','eat','fine','go','have','how-much',
             # # 'hungry','me','mhai','miss','name','nevermind','no','now','or','question',
@@ -104,7 +134,6 @@ class train():
             # general  = ['nothing','me','no','worry','thank-you','miss','nevermind','fine','sorry','toothache','hungry']
 
             #general  = ['nothing','me','Do-you-understand','eat','no','have','question','go','school','nevermind','thank-you']
-            actions = np.array(general)
             # Thirty videos worth of data
             no_sequences = 20
             # Videos are going to be 30 frames in length
@@ -141,10 +170,10 @@ class train():
             callback = EarlyStopping(monitor='loss', patience=10)
             model.compile(optimizer=Adam(lr=0.00005),loss='categorical_crossentropy',metrics=['accuracy'])
             model.summary()
-            history = model.fit(X_train, y_train, epochs=300, validation_data=(X_test,y_test))
+            history = model.fit(X_train, y_train, epochs=5, validation_data=(X_test,y_test))
             model.summary()
             res = model.predict(X_test)
-            model.save('day.h5')
+            model.save(file)
             yhat = model.predict(X_test)
             ytrue = np.argmax(y_test, axis=1).tolist()
             yhat = np.argmax(yhat, axis=1).tolist()

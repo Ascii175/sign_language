@@ -7,7 +7,6 @@ import cv2
 import time
 import glob
 import os
-from PySide2 import *
 import cv2 
 import numpy as np
 import os 
@@ -16,7 +15,6 @@ import time
 import mediapipe as mp
 from PIL import ImageFont, ImageDraw, Image
 import tensorflow as tf
-import speech_recognition as stt
 from sklearn.model_selection import train_test_split
 from tensorflow.keras.utils import to_categorical
 from tensorflow.keras.models import Sequential
@@ -39,24 +37,24 @@ def draw_landmarks(image, results):
     mp_drawing.draw_landmarks(image, results.right_hand_landmarks, mp_holistic.HAND_CONNECTIONS) # Draw right hand connections
 
 def draw_styled_landmarks(image, results):
-    mp_drawing.draw_landmarks(image, results.face_landmarks, mp_holistic.FACEMESH_TESSELATION, 
-                                        mp_drawing.DrawingSpec(color=(80,110,10), thickness=1, circle_radius=1), 
-                                        mp_drawing.DrawingSpec(color=(80,256,121), thickness=1, circle_radius=1)
-                                        ) 
-    # mp_drawing.draw_landmarks(image, results.pose_landmarks, mp_holistic.POSE_CONNECTIONS,
-    #                          mp_drawing.DrawingSpec(color=(80,22,10), thickness=2, circle_radius=4), 
-    #                          mp_drawing.DrawingSpec(color=(80,44,121), thickness=2, circle_radius=2)
-    #                          ) 
-    # # Draw left hand connections
-    # mp_drawing.draw_landmarks(image, results.left_hand_landmarks, mp_holistic.HAND_CONNECTIONS, 
-    #                          mp_drawing.DrawingSpec(color=(121,22,76), thickness=2, circle_radius=4), 
-    #                          mp_drawing.DrawingSpec(color=(121,44,250), thickness=2, circle_radius=2)
-    #                          ) 
-    # # Draw right hand connections  
-    # mp_drawing.draw_landmarks(image, results.right_hand_landmarks, mp_holistic.HAND_CONNECTIONS, 
-    #                          mp_drawing.DrawingSpec(color=(245,117,66), thickness=2, circle_radius=4), 
-    #                          mp_drawing.DrawingSpec(color=(245,66,230), thickness=2, circle_radius=2)
-    #                          )
+    # mp_drawing.draw_landmarks(image, results.face_landmarks, mp_holistic.FACEMESH_TESSELATION, 
+    #                                     mp_drawing.DrawingSpec(color=(80,110,10), thickness=1, circle_radius=1), 
+    #                                     mp_drawing.DrawingSpec(color=(80,256,121), thickness=1, circle_radius=1)
+    #                                     ) 
+    mp_drawing.draw_landmarks(image, results.pose_landmarks, mp_holistic.POSE_CONNECTIONS,
+                             mp_drawing.DrawingSpec(color=(80,22,10), thickness=2, circle_radius=4), 
+                             mp_drawing.DrawingSpec(color=(80,44,121), thickness=2, circle_radius=2)
+                             ) 
+    # Draw left hand connections
+    mp_drawing.draw_landmarks(image, results.left_hand_landmarks, mp_holistic.HAND_CONNECTIONS, 
+                             mp_drawing.DrawingSpec(color=(121,22,76), thickness=2, circle_radius=4), 
+                             mp_drawing.DrawingSpec(color=(121,44,250), thickness=2, circle_radius=2)
+                             ) 
+    # Draw right hand connections  
+    mp_drawing.draw_landmarks(image, results.right_hand_landmarks, mp_holistic.HAND_CONNECTIONS, 
+                             mp_drawing.DrawingSpec(color=(245,117,66), thickness=2, circle_radius=4), 
+                             mp_drawing.DrawingSpec(color=(245,66,230), thickness=2, circle_radius=2)
+                             )
 def extract_keypoints(results):
     pose = np.array([[res.x, res.y, res.z, res.visibility] for res in results.pose_landmarks.landmark]).flatten() if results.pose_landmarks else np.zeros(33*4)
     # face = np.array([[res.x, res.y, res.z] for res in results.face_landmarks.landmark]).flatten() if results.face_landmarks else np.zeros(468*3)
@@ -65,9 +63,12 @@ def extract_keypoints(results):
     return np.concatenate([pose,lh, rh])
 
 class addtext():
-    DATA_PATH = os.path.join('test_Data')		
-    actions = np.array([])
-    v = str(input("Element:  "))
+    DATA_PATH = os.path.join('MP_Data')		
+    actions = ([])
+    n = int(input("Enter number of elements : "))
+    for i in range(0, n):
+        v = str(input("Element:  "))
+        actions.append(v)
     actions = append(actions, v)
     # Thirty videos worth of data
     no_sequences = 20
@@ -122,7 +123,5 @@ class addtext():
                     np.save(npy_path, keypoints)
                 
                     # Break gracefully
-                  
-
         cap.release()
         cv2.destroyAllWindows()

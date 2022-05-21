@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'untitledJwFJVY.ui'
+## Form generated from reading UI file 'untitledUKCyaV.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -19,7 +19,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(891, 706)
+        MainWindow.resize(895, 715)
         MainWindow.setStyleSheet(u"")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
@@ -116,7 +116,7 @@ class Ui_MainWindow(object):
 "")
         self.menu1 = QWidget()
         self.menu1.setObjectName(u"menu1")
-        self.menu1.setGeometry(QRect(0, 0, 258, 534))
+        self.menu1.setGeometry(QRect(0, -20, 213, 534))
         self.menu1.setStyleSheet(u"border:none;\n"
 "")
         self.verticalLayout_5 = QVBoxLayout(self.menu1)
@@ -237,7 +237,7 @@ class Ui_MainWindow(object):
         self.toolBox.addItem(self.menu1, icon4, u"\u0e2b\u0e21\u0e27\u0e14\u0e04\u0e33")
         self.menu2 = QWidget()
         self.menu2.setObjectName(u"menu2")
-        self.menu2.setGeometry(QRect(0, 0, 279, 477))
+        self.menu2.setGeometry(QRect(0, 0, 230, 453))
         self.verticalLayout_7 = QVBoxLayout(self.menu2)
         self.verticalLayout_7.setSpacing(0)
         self.verticalLayout_7.setObjectName(u"verticalLayout_7")
@@ -362,6 +362,17 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_4.addWidget(self.toolBox)
 
+        self.newMo = QPushButton(self.frame_9)
+        self.newMo.setObjectName(u"newMo")
+        self.newMo.setFont(font)
+        self.newMo.setStyleSheet(u"background-color: rgb(0, 0, 0);")
+        icon11 = QIcon()
+        icon11.addFile(u":/icons/icons/user-plus.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.newMo.setIcon(icon11)
+        self.newMo.setIconSize(QSize(32, 32))
+
+        self.verticalLayout_4.addWidget(self.newMo)
+
 
         self.verticalLayout_3.addWidget(self.frame_9)
 
@@ -377,9 +388,9 @@ class Ui_MainWindow(object):
         self.pushButton.setObjectName(u"pushButton")
         self.pushButton.setFont(font)
         self.pushButton.setStyleSheet(u"background-color: rgb(0, 0, 0);")
-        icon11 = QIcon()
-        icon11.addFile(u":/icons/icons/log-out.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.pushButton.setIcon(icon11)
+        icon12 = QIcon()
+        icon12.addFile(u":/icons/icons/log-out.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.pushButton.setIcon(icon12)
         self.pushButton.setIconSize(QSize(32, 32))
 
         self.horizontalLayout_5.addWidget(self.pushButton)
@@ -458,27 +469,27 @@ class Ui_MainWindow(object):
         self.horizontalLayout_6.setContentsMargins(0, 0, 0, 0)
         self.pushButton_13 = QPushButton(self.frame)
         self.pushButton_13.setObjectName(u"pushButton_13")
-        icon12 = QIcon()
-        icon12.addFile(u":/icons/icons/loader.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.pushButton_13.setIcon(icon12)
+        icon13 = QIcon()
+        icon13.addFile(u":/icons/icons/loader.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.pushButton_13.setIcon(icon13)
         self.pushButton_13.setIconSize(QSize(22, 22))
 
         self.horizontalLayout_6.addWidget(self.pushButton_13)
 
         self.pushButton_12 = QPushButton(self.frame)
         self.pushButton_12.setObjectName(u"pushButton_12")
-        icon13 = QIcon()
-        icon13.addFile(u":/icons/icons/maximize-2.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.pushButton_12.setIcon(icon13)
+        icon14 = QIcon()
+        icon14.addFile(u":/icons/icons/maximize-2.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.pushButton_12.setIcon(icon14)
         self.pushButton_12.setIconSize(QSize(22, 22))
 
         self.horizontalLayout_6.addWidget(self.pushButton_12, 0, Qt.AlignHCenter)
 
         self.pushButton_11 = QPushButton(self.frame)
         self.pushButton_11.setObjectName(u"pushButton_11")
-        icon14 = QIcon()
-        icon14.addFile(u":/icons/icons/x.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.pushButton_11.setIcon(icon14)
+        icon15 = QIcon()
+        icon15.addFile(u":/icons/icons/x.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.pushButton_11.setIcon(icon15)
         self.pushButton_11.setIconSize(QSize(22, 22))
 
         self.horizontalLayout_6.addWidget(self.pushButton_11, 0, Qt.AlignHCenter)
@@ -532,9 +543,9 @@ class Ui_MainWindow(object):
         self.playSo.setStyleSheet(u"border:3px solid rgb(230, 5, 64);\n"
 "border-radius:20px\n"
 "")
-        icon15 = QIcon()
-        icon15.addFile(u":/icons/icons/volume-2.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.playSo.setIcon(icon15)
+        icon16 = QIcon()
+        icon16.addFile(u":/icons/icons/volume-2.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.playSo.setIcon(icon16)
         self.playSo.setIconSize(QSize(32, 32))
 
         self.horizontalLayout_7.addWidget(self.playSo)
@@ -572,9 +583,9 @@ class Ui_MainWindow(object):
 "border-radius:20px\n"
 "")
         self.mic.setText(u"")
-        icon16 = QIcon()
-        icon16.addFile(u":/icons/icons/mic.svg", QSize(), QIcon.Normal, QIcon.Off)
-        self.mic.setIcon(icon16)
+        icon17 = QIcon()
+        icon17.addFile(u":/icons/icons/mic.svg", QSize(), QIcon.Normal, QIcon.Off)
+        self.mic.setIcon(icon17)
         self.mic.setIconSize(QSize(32, 32))
 
         self.horizontalLayout_8.addWidget(self.mic)
@@ -605,7 +616,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.toolBox.setCurrentIndex(1)
+        self.toolBox.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -633,6 +644,7 @@ class Ui_MainWindow(object):
         self.day_img.setText(QCoreApplication.translate("MainWindow", u"\u0e27\u0e31\u0e19 \u0e40\u0e14\u0e37\u0e2d\u0e19 \u0e1b\u0e35", None))
         self.gen_img.setText(QCoreApplication.translate("MainWindow", u"\u0e04\u0e33\u0e17\u0e31\u0e48\u0e27\u0e44\u0e1b", None))
         self.toolBox.setItemText(self.toolBox.indexOf(self.menu2), QCoreApplication.translate("MainWindow", u"\u0e23\u0e39\u0e1b\u0e20\u0e32\u0e1e\u0e15\u0e31\u0e27\u0e2d\u0e22\u0e48\u0e32\u0e07", None))
+        self.newMo.setText(QCoreApplication.translate("MainWindow", u"\u0e17\u0e48\u0e32\u0e43\u0e2b\u0e21\u0e48", None))
         self.pushButton.setText(QCoreApplication.translate("MainWindow", u"Exit", None))
         self.pushButton_16.setText("")
         self.pushButton_15.setText("")

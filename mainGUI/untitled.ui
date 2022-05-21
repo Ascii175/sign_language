@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>891</width>
-    <height>706</height>
+    <width>895</width>
+    <height>715</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -172,7 +172,7 @@ QPushButton{
             <property name="frameShadow">
              <enum>QFrame::Raised</enum>
             </property>
-            <layout class="QVBoxLayout" name="verticalLayout_4" stretch="0">
+            <layout class="QVBoxLayout" name="verticalLayout_4" stretch="0,0">
              <property name="spacing">
               <number>9</number>
              </property>
@@ -206,14 +206,14 @@ QPushButton{
 </string>
                </property>
                <property name="currentIndex">
-                <number>1</number>
+                <number>0</number>
                </property>
                <widget class="QWidget" name="menu1">
                 <property name="geometry">
                  <rect>
                   <x>0</x>
-                  <y>0</y>
-                  <width>258</width>
+                  <y>-20</y>
+                  <width>213</width>
                   <height>534</height>
                  </rect>
                 </property>
@@ -521,8 +521,8 @@ QPushButton{
                  <rect>
                   <x>0</x>
                   <y>0</y>
-                  <width>279</width>
-                  <height>477</height>
+                  <width>230</width>
+                  <height>453</height>
                  </rect>
                 </property>
                 <attribute name="icon">
@@ -947,6 +947,34 @@ QPushButton{
                  </item>
                 </layout>
                </widget>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="newMo">
+               <property name="font">
+                <font>
+                 <family>TH Mali Grade 6</family>
+                 <pointsize>22</pointsize>
+                 <weight>75</weight>
+                 <bold>true</bold>
+                </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">background-color: rgb(0, 0, 0);</string>
+               </property>
+               <property name="text">
+                <string>ท่าใหม่</string>
+               </property>
+               <property name="icon">
+                <iconset resource="icons.qrc">
+                 <normaloff>:/icons/icons/user-plus.svg</normaloff>:/icons/icons/user-plus.svg</iconset>
+               </property>
+               <property name="iconSize">
+                <size>
+                 <width>32</width>
+                 <height>32</height>
+                </size>
+               </property>
               </widget>
              </item>
             </layout>
