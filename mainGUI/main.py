@@ -625,6 +625,7 @@ class MainWindow(QtWidgets.QMainWindow):
 					# image = prob_viz(res, actions, image, colors) 
 				word = predicted
 				#print(word)
+				self.ui.showtext.append(word) 
 				# cv2.rectangle(image, (0,0), (640, 40), (245, 117, 16), -1)
 				# cv2.putText(image, word, (3,30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA)  
 				cv2.imshow('OpenCV Feed', image)  
@@ -738,7 +739,7 @@ class MainWindow(QtWidgets.QMainWindow):
 						sentence = sentence[-5:] 
 					# image = prob_viz(res, actions, image, colors) 
 				word = predicted
-				print(word)
+				self.ui.showtext.append(word) 
 				# cv2.rectangle(image, (0,0), (640, 40), (245, 117, 16), -1)
 				# cv2.putText(image, word, (3,30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA)  
 				cv2.imshow('OpenCV Feed', image)  
@@ -992,7 +993,8 @@ class MainWindow(QtWidgets.QMainWindow):
 						sentence = sentence[-5:] 
 					# image = prob_viz(res, actions, image, colors) 
 				word = predicted
-				print(word)
+				# print(word)
+				self.ui.showtext.append(word) 
 				# cv2.rectangle(image, (0,0), (640, 40), (245, 117, 16), -1)
 				# cv2.putText(image, word, (3,30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA)  
 				cv2.imshow('OpenCV Feed', image)  
@@ -1116,6 +1118,7 @@ class MainWindow(QtWidgets.QMainWindow):
 					# image = prob_viz(res, actions, image, colors) 
 				word = predicted
 				#print(word)
+				self.ui.showtext.append(word) 
 				# cv2.rectangle(image, (0,0), (640, 40), (245, 117, 16), -1)
 				# cv2.putText(image, word, (3,30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA)  
 				cv2.imshow('OpenCV Feed', image)  		
@@ -1243,7 +1246,8 @@ class MainWindow(QtWidgets.QMainWindow):
 						sentence = sentence[-5:] 
 					# image = prob_viz(res, actions, image, colors) 
 				word = predicted
-				print(word)
+				# print(word)
+				self.ui.showtext.append(word) 
 				# cv2.rectangle(image, (0,0), (640, 40), (245, 117, 16), -1)
 				# cv2.putText(image, word, (3,30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA)  
 				cv2.imshow('OpenCV Feed', image)  		
